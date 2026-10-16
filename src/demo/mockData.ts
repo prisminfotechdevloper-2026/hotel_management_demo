@@ -82,7 +82,7 @@ export const ROOMS_DATA: RoomOption[] = [
   {
     id: "deluxe-heritage",
     name: "Deluxe Palace Room",
-    pricePerNight: 14500,
+    pricePerNight: 2200,
     size: "480 sq.ft",
     maxGuests: 2,
     bedType: "King Bed",
@@ -93,7 +93,7 @@ export const ROOMS_DATA: RoomOption[] = [
   {
     id: "royal-suite",
     name: "Royal Heritage Suite",
-    pricePerNight: 24500,
+    pricePerNight: 2600,
     size: "850 sq.ft",
     maxGuests: 3,
     bedType: "Four-Poster King",
@@ -104,7 +104,7 @@ export const ROOMS_DATA: RoomOption[] = [
   {
     id: "maharaja-penthouse",
     name: "Maharaja Presidential Pavilion",
-    pricePerNight: 48000,
+    pricePerNight: 3000,
     size: "1,600 sq.ft",
     maxGuests: 4,
     bedType: "2 Master King Bedrooms",
@@ -128,7 +128,7 @@ export interface AdminBooking {
 export const ADMIN_MOCK_DATA = {
   todayArrivals: 14,
   occupancyPercent: 88,
-  weekRevenue: "₹24,85,000",
+  weekRevenue: "₹2,85,000",
   directShare: "74%",
   recentBookings: [
     {
@@ -138,7 +138,7 @@ export const ADMIN_MOCK_DATA = {
       checkIn: "Today",
       checkOut: "Oct 28",
       status: "Arriving Today" as const,
-      totalAmount: "₹49,000",
+      totalAmount: "₹5,200",
       directChannel: true,
     },
     {
@@ -148,7 +148,7 @@ export const ADMIN_MOCK_DATA = {
       checkIn: "Oct 24",
       checkOut: "Oct 27",
       status: "Checked In" as const,
-      totalAmount: "₹43,500",
+      totalAmount: "₹6,600",
       directChannel: true,
     },
     {
@@ -158,7 +158,7 @@ export const ADMIN_MOCK_DATA = {
       checkIn: "Oct 25",
       checkOut: "Oct 29",
       status: "Confirmed" as const,
-      totalAmount: "₹1,92,000",
+      totalAmount: "₹12,000",
       directChannel: true,
     },
     {
@@ -168,7 +168,7 @@ export const ADMIN_MOCK_DATA = {
       checkIn: "Oct 26",
       checkOut: "Oct 28",
       status: "Confirmed" as const,
-      totalAmount: "₹29,000",
+      totalAmount: "₹4,400",
       directChannel: true,
     },
   ],

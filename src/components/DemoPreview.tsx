@@ -165,7 +165,7 @@ export default function DemoPreview() {
                   <div className="bg-white p-2.5 border border-[#E4DCCB] flex flex-col justify-between">
                     <div>
                       <span className="text-[10px] text-[#6B645A] uppercase tracking-wider block">Deluxe Palace Room</span>
-                      <span className="text-xs font-serif font-semibold text-[#141414]">₹14,500 / night</span>
+                      <span className="text-xs font-serif font-semibold text-[#141414]">₹2,200 / night</span>
                     </div>
                     <span className="text-[9px] text-[#9A7B43] font-medium mt-2 flex items-center gap-1">
                       Available &bull; Instant Confirmation
