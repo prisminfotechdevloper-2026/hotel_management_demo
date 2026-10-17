@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { ROOMS_DATA, RoomOption } from "./mockData";
+import { HotelType, getRoomsForType, RoomOption } from "./mockData";
 import { X, ArrowRight } from "lucide-react";
 import {
   BookingStepRooms,
@@ -12,22 +12,25 @@ import {
 interface BookingFlowModalProps {
   isOpen: boolean;
   onClose: () => void;
-  accentColor: string;
+  accentColor?: string;
   initialRoomId?: string;
   initialCheckIn?: string;
   initialCheckOut?: string;
   hotelName: string;
+  hotelType?: HotelType;
 }
 
 export default function BookingFlowModal({
   isOpen,
   onClose,
-  accentColor,
   initialRoomId,
   initialCheckIn,
   initialCheckOut,
   hotelName,
+  hotelType = "heritage",
 }: BookingFlowModalProps) {
+  const rooms = getRoomsForType(hotelType);
+
   const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
 
   // Step 1: Dates & Guests
@@ -37,7 +40,7 @@ export default function BookingFlowModal({
 
   // Step 2: Selected Room (Lazy initializer)
   const [selectedRoom, setSelectedRoom] = useState<RoomOption>(() => {
-    return ROOMS_DATA.find((r) => r.id === initialRoomId) || ROOMS_DATA[0];
+    return rooms.find((r) => r.id === initialRoomId) || rooms[0];
   });
 
   useEffect(() => {
@@ -45,39 +48,42 @@ export default function BookingFlowModal({
       if (initialCheckIn) setCheckIn(initialCheckIn);
       if (initialCheckOut) setCheckOut(initialCheckOut);
       if (initialRoomId) {
-        const found = ROOMS_DATA.find((r) => r.id === initialRoomId);
+        const found = rooms.find((r) => r.id === initialRoomId);
         if (found) setSelectedRoom(found);
+      } else {
+        setSelectedRoom(rooms[0]);
       }
-      setStep(initialRoomId ? 2 : 1);
-      setErrorMsg(null);
+      setStep(1);
     }
-  }, [isOpen, initialCheckIn, initialCheckOut, initialRoomId]);
+  }, [isOpen, initialRoomId, initialCheckIn, initialCheckOut, hotelType, rooms]);
 
-  // Step 3: Guest details
+  // Step 3: Guest Contact & Billing info
   const [guestName, setGuestName] = useState("");
   const [guestEmail, setGuestEmail] = useState("");
   const [guestPhone, setGuestPhone] = useState("");
   const [specialRequests, setSpecialRequests] = useState("");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  // Step 4 Confirmation data
+  // Step 4: Confirmed Mock Reservation ID
   const [confirmationId, setConfirmationId] = useState("");
 
   if (!isOpen) return null;
 
-  const calculateNights = () => {
-    const start = new Date(checkIn);
-    const end = new Date(checkOut);
-    const diff = (end.getTime() - start.getTime()) / (1000 * 3600 * 24);
-    return diff > 0 ? diff : 1;
-  };
+  // Nights calculation
+  const start = new Date(checkIn);
+  const end = new Date(checkOut);
+  const diffTime = Math.abs(end.getTime() - start.getTime());
+  const nights = Math.max(1, Math.ceil(diffTime / (1000 * 60 * 60 * 24)) || 1);
 
-  const nights = calculateNights();
-  const subtotal = selectedRoom.pricePerNight * nights;
-  const taxes = Math.round(subtotal * 0.18);
-  const grandTotal = subtotal + taxes;
+  const roomTotal = selectedRoom.pricePerNight * nights;
+  const taxes = Math.round(roomTotal * 0.12);
+  const grandTotal = roomTotal + taxes;
 
   const handleNextStep1 = () => {
+    if (!checkIn || !checkOut) {
+      alert("Please select both check-in and check-out dates.");
+      return;
+    }
     setStep(2);
   };
 
@@ -88,12 +94,14 @@ export default function BookingFlowModal({
 
   const handleConfirmReservation = (e: React.FormEvent) => {
     e.preventDefault();
+    setErrorMsg(null);
+
     if (!guestName.trim()) {
-      setErrorMsg("Please enter guest name.");
+      setErrorMsg("Please enter the primary guest name.");
       return;
     }
     if (!guestEmail.trim() || !guestEmail.includes("@")) {
-      setErrorMsg("Please enter a valid guest email.");
+      setErrorMsg("Please provide a valid email address.");
       return;
     }
     if (!guestPhone.trim() || guestPhone.length < 10) {
@@ -107,39 +115,35 @@ export default function BookingFlowModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-[#141414]/85 backdrop-blur-sm p-4 sm:p-6 md:p-8 flex items-center justify-center">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/80 backdrop-blur-sm p-4 sm:p-6 md:p-8 flex items-center justify-center">
       {/* Modal Dialog */}
-      <div className="relative w-full max-w-4xl bg-[#FAF7F2] border border-[#E4DCCB] shadow-2xl p-6 sm:p-8 md:p-9 my-auto z-10 text-[#141414]">
+      <div className="relative w-full max-w-4xl bg-white border border-neutral-200 shadow-2xl p-6 sm:p-8 md:p-9 my-auto z-10 text-[#111111]">
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-1.5 text-[#141414]/60 hover:text-[#141414] hover:bg-[#E4DCCB]/40 transition-colors cursor-pointer"
+          className="absolute top-5 right-5 p-1.5 text-neutral-400 hover:text-black hover:bg-neutral-100 transition-colors cursor-pointer"
           aria-label="Close booking modal"
         >
           <X size={22} />
         </button>
 
         {/* Modal Header */}
-        <div className="mb-6 border-b border-[#E4DCCB] pb-4">
+        <div className="mb-6 border-b border-neutral-200 pb-4">
           <div className="flex items-center justify-between mb-2">
-            <span
-              className="text-[11px] uppercase tracking-[0.2em] font-semibold"
-              style={{ color: accentColor }}
-            >
+            <span className="text-[11px] uppercase tracking-[0.2em] font-semibold text-neutral-600">
               {hotelName} • Direct Reservation Engine
             </span>
-            <span className="text-xs font-mono text-[#6B645A]">
+            <span className="text-xs font-mono text-neutral-500">
               Step {step} of 4
             </span>
           </div>
 
           {/* Stepper Progress bar */}
-          <div className="w-full h-1.5 bg-[#E4DCCB] rounded-full overflow-hidden flex">
+          <div className="w-full h-1.5 bg-neutral-200 rounded-full overflow-hidden flex">
             <div
-              className="h-full transition-[width] duration-300"
+              className="h-full bg-[#0F2744] transition-[width] duration-300"
               style={{
                 width: `${(step / 4) * 100}%`,
-                backgroundColor: accentColor,
               }}
             />
           </div>
@@ -149,10 +153,10 @@ export default function BookingFlowModal({
         {step === 1 && (
           <div className="space-y-6">
             <div>
-              <h2 className="font-serif text-2xl sm:text-3xl text-[#141414] font-medium mb-1.5">
-                Select Stay Dates & Guests
+              <h2 className="font-serif text-2xl sm:text-3xl text-[#111111] font-medium mb-1.5">
+                Select Stay Dates &amp; Guests
               </h2>
-              <p className="text-xs text-[#6B645A]">
+              <p className="text-xs text-neutral-600">
                 Guaranteed direct hotel rate • Instant room reservation confirmation.
               </p>
             </div>
@@ -161,7 +165,7 @@ export default function BookingFlowModal({
               <div>
                 <label
                   htmlFor="bfm-step1-checkIn"
-                  className="block text-xs uppercase tracking-wider font-semibold text-[#141414] mb-1"
+                  className="block text-xs uppercase tracking-wider font-semibold text-[#111111] mb-1"
                 >
                   Check-in Date
                 </label>
@@ -173,7 +177,7 @@ export default function BookingFlowModal({
                     aria-label="Check-in Date"
                     value={checkIn}
                     onChange={(e) => setCheckIn(e.target.value)}
-                    className="w-full bg-white border border-[#E4DCCB] px-3.5 py-2.5 text-sm text-[#141414] focus:outline-none"
+                    className="w-full bg-white border border-neutral-300 px-3.5 py-2.5 text-sm text-[#111111] focus:outline-none focus:border-black"
                   />
                 </div>
               </div>
@@ -181,7 +185,7 @@ export default function BookingFlowModal({
               <div>
                 <label
                   htmlFor="bfm-step1-checkOut"
-                  className="block text-xs uppercase tracking-wider font-semibold text-[#141414] mb-1"
+                  className="block text-xs uppercase tracking-wider font-semibold text-[#111111] mb-1"
                 >
                   Check-out Date
                 </label>
@@ -193,14 +197,14 @@ export default function BookingFlowModal({
                     aria-label="Check-out Date"
                     value={checkOut}
                     onChange={(e) => setCheckOut(e.target.value)}
-                    className="w-full bg-white border border-[#E4DCCB] px-3.5 py-2.5 text-sm text-[#141414] focus:outline-none"
+                    className="w-full bg-white border border-neutral-300 px-3.5 py-2.5 text-sm text-[#111111] focus:outline-none focus:border-black"
                   />
                 </div>
               </div>
             </div>
 
             <div>
-              <span className="block text-xs uppercase tracking-wider font-semibold text-[#141414] mb-1">
+              <span className="block text-xs uppercase tracking-wider font-semibold text-[#111111] mb-1">
                 Number of Guests
               </span>
               <div className="flex items-center gap-3">
@@ -212,13 +216,9 @@ export default function BookingFlowModal({
                     aria-pressed={guestsCount === count}
                     className={`flex-1 py-2 text-xs font-semibold uppercase tracking-wider border transition-colors cursor-pointer ${
                       guestsCount === count
-                        ? "text-white"
-                        : "bg-white text-[#141414] border-[#E4DCCB] hover:border-[#141414]"
+                        ? "bg-[#0F2744] text-white border-[#2B4C7E]"
+                        : "bg-white text-[#111111] border-neutral-300 hover:border-black"
                     }`}
-                    style={{
-                      backgroundColor: guestsCount === count ? accentColor : undefined,
-                      borderColor: guestsCount === count ? accentColor : undefined,
-                    }}
                   >
                     {count} {count === 1 ? "Guest" : "Guests"}
                   </button>
@@ -226,15 +226,14 @@ export default function BookingFlowModal({
               </div>
             </div>
 
-            <div className="p-4 bg-white border border-[#E4DCCB] flex items-center justify-between">
-              <div className="text-xs text-[#2A2A2A]">
+            <div className="p-4 bg-neutral-50 border border-neutral-200 flex items-center justify-between">
+              <div className="text-xs text-neutral-800">
                 <span className="font-semibold block">{nights} Night(s) Stay</span>
-                <span className="text-[#6B645A]">Exclusive Direct Booking Perks Included</span>
+                <span className="text-neutral-500">Exclusive Direct Booking Perks Included</span>
               </div>
               <button
                 onClick={handleNextStep1}
-                className="btn-gold flex items-center gap-2 py-2.5 px-6 cursor-pointer"
-                style={{ backgroundColor: accentColor, borderColor: accentColor, color: "#FFFFFF" }}
+                className="btn-navy flex items-center gap-2 py-2.5 px-6 cursor-pointer text-white font-semibold text-xs uppercase tracking-wider"
               >
                 <span>Choose Room</span>
                 <ArrowRight size={14} />
@@ -249,7 +248,7 @@ export default function BookingFlowModal({
             nights={nights}
             guestsCount={guestsCount}
             selectedRoom={selectedRoom}
-            accentColor={accentColor}
+            rooms={rooms}
             onBack={() => setStep(1)}
             onSelectRoom={handleNextStep2}
           />
@@ -269,7 +268,6 @@ export default function BookingFlowModal({
             guestPhone={guestPhone}
             specialRequests={specialRequests}
             errorMsg={errorMsg}
-            accentColor={accentColor}
             onBack={() => setStep(2)}
             setGuestName={setGuestName}
             setGuestEmail={setGuestEmail}
@@ -290,7 +288,6 @@ export default function BookingFlowModal({
             checkOut={checkOut}
             nights={nights}
             grandTotal={grandTotal}
-            accentColor={accentColor}
             onClose={onClose}
           />
         )}

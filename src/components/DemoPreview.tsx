@@ -137,30 +137,26 @@ export default function DemoPreview() {
                   <span>prisminfotechsolution.com/demo/{selectedType}</span>
                 </div>
                 <div
-                  className="flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider transition-colors duration-300"
-                  style={{ color: activePreset.defaultAccent }}
+                  className="flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-neutral-400"
                 >
                   Live View
                 </div>
               </div>
 
               {/* Mockup Screen Content Preview */}
-              <div className="relative bg-[#FAF7F2] aspect-[16/10] overflow-hidden flex flex-col justify-between">
+              <div className="relative bg-white aspect-[16/10] overflow-hidden flex flex-col justify-between">
                 {/* Simulated Floating Requirement Switcher bar at top */}
-                <div className="bg-[#141414] text-[#FAF7F2] px-4 py-2 flex items-center justify-between text-xs border-b border-white/10">
+                <div className="bg-[#111111] text-white px-4 py-2 flex items-center justify-between text-xs border-b border-[#222222]">
                   <div className="flex items-center gap-2">
-                    <Sliders size={13} style={{ color: activePreset.defaultAccent }} />
-                    <span className="text-[11px] uppercase tracking-wider font-medium text-[#FAF7F2]/80">Format:</span>
-                    <span
-                      className="font-semibold px-2 py-0.5 text-[10px] text-white transition-colors duration-300"
-                      style={{ backgroundColor: activePreset.defaultAccent }}
-                    >
+                    <Sliders size={13} className="text-white/80" />
+                    <span className="text-[11px] uppercase tracking-wider font-medium text-neutral-400">Format:</span>
+                    <span className="font-semibold px-2 py-0.5 text-[10px] bg-[#0F2744] text-white border border-[#2B4C7E]">
                       {activePreset.label}
                     </span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <Sparkles size={11} style={{ color: activePreset.defaultAccent }} />
-                    <span className="text-[10px] uppercase tracking-wider font-semibold text-[#FAF7F2]/80">
+                    <Sparkles size={11} className="text-neutral-400" />
+                    <span className="text-[10px] uppercase tracking-wider font-semibold text-neutral-300">
                       {activePreset.city}
                     </span>
                   </div>
@@ -178,34 +174,30 @@ export default function DemoPreview() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent" />
                   <div className="absolute bottom-3 left-4 right-4 text-white">
-                    <span
-                      className="text-[9px] uppercase tracking-[0.2em] font-semibold block mb-0.5 transition-colors duration-300"
-                      style={{ color: activePreset.defaultAccent }}
-                    >
+                    <span className="text-[9px] uppercase tracking-[0.2em] font-semibold block mb-0.5 text-neutral-300">
                       {activePreset.badgeText}
                     </span>
                     <p className="font-serif text-lg sm:text-xl font-medium leading-tight truncate">
                       {activePreset.name}
                     </p>
-                    <p className="text-[11px] text-[#FAF7F2]/80 line-clamp-1 mt-0.5 font-light">
+                    <p className="text-[11px] text-neutral-300 line-clamp-1 mt-0.5 font-light">
                       {activePreset.tagline}
                     </p>
                   </div>
                 </div>
 
                 {/* Simulated Quick Reservation Bar */}
-                <div className="bg-white border-y border-[#E4DCCB] px-4 py-2.5 flex items-center justify-between text-xs shadow-xs">
+                <div className="bg-white border-y border-neutral-200 px-4 py-2.5 flex items-center justify-between text-xs shadow-xs">
                   <div className="flex items-center gap-3">
-                    <div className="flex items-center gap-1.5 text-[#2A2A2A]">
-                      <Calendar size={13} style={{ color: activePreset.defaultAccent }} />
+                    <div className="flex items-center gap-1.5 text-neutral-900">
+                      <Calendar size={13} className="text-[#0F2744]" />
                       <span className="font-medium">Oct 24 &ndash; Oct 27</span>
                     </div>
-                    <span className="text-[#6B645A] hidden sm:inline">• 2 Guests</span>
+                    <span className="text-neutral-500 hidden sm:inline">• 2 Guests</span>
                   </div>
                   <Link
                     href={`/demo?type=${selectedType}`}
-                    className="text-white text-[10px] font-semibold uppercase tracking-wider px-3 py-1 transition-opacity duration-300 hover:opacity-90"
-                    style={{ backgroundColor: activePreset.defaultAccent }}
+                    className="btn-navy text-white text-[10px] font-semibold uppercase tracking-wider px-3 py-1 transition-opacity duration-300 hover:opacity-90"
                   >
                     Check Rates
                   </Link>

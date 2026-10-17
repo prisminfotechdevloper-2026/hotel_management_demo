@@ -2,39 +2,53 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { ROOMS_DATA, RoomOption } from "./mockData";
-import { Check, Users, Maximize2, Bed, ShieldCheck, ArrowRight } from "lucide-react";
+import { HotelType, getRoomsForType } from "./mockData";
+import { Check, Users, Maximize2, Bed, ArrowRight } from "lucide-react";
 
 interface RoomsProps {
-  accentColor: string;
+  accentColor?: string;
   hotelName: string;
+  hotelType?: HotelType;
   onOpenBooking: (roomId?: string) => void;
 }
 
-export default function Rooms({ accentColor, hotelName, onOpenBooking }: RoomsProps) {
+export default function Rooms({ hotelName, hotelType = "heritage", onOpenBooking }: RoomsProps) {
   const [filter, setFilter] = useState<"all" | "suite" | "deluxe">("all");
 
-  const filteredRooms = ROOMS_DATA.filter((room) => {
-    if (filter === "suite") return room.name.toLowerCase().includes("suite") || room.name.toLowerCase().includes("pavilion");
-    if (filter === "deluxe") return room.name.toLowerCase().includes("deluxe");
+  const propertyRooms = getRoomsForType(hotelType);
+
+  const filteredRooms = propertyRooms.filter((room) => {
+    if (filter === "suite") {
+      return (
+        room.name.toLowerCase().includes("suite") ||
+        room.name.toLowerCase().includes("chalet") ||
+        room.name.toLowerCase().includes("villa") ||
+        room.name.toLowerCase().includes("pavilion")
+      );
+    }
+    if (filter === "deluxe") {
+      return (
+        room.name.toLowerCase().includes("deluxe") ||
+        room.name.toLowerCase().includes("studio") ||
+        room.name.toLowerCase().includes("room") ||
+        room.name.toLowerCase().includes("cottage")
+      );
+    }
     return true;
   });
 
   return (
-    <div className="max-w-[1200px] mx-auto px-6 md:px-8 pt-12 pb-24 text-left">
+    <div className="max-w-[1200px] mx-auto px-6 md:px-8 pt-12 pb-24 text-left bg-white text-[#111111]">
       {/* Header */}
-      <div className="border-b border-[#E4DCCB] pb-6 mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <div className="border-b border-neutral-200 pb-6 mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <span
-            className="eyebrow tracking-[0.2em] block mb-1"
-            style={{ color: accentColor }}
-          >
+          <span className="eyebrow tracking-[0.2em] block mb-1 text-neutral-500">
             {hotelName} Accommodations
           </span>
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#141414] font-normal">
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#111111] font-normal">
             Rooms &amp; Suites
           </h1>
-          <p className="text-sm text-[#6B645A] mt-2">
+          <p className="text-sm text-neutral-600 mt-2">
             Spacious, comfortable rooms with premium bedding, silent air conditioning, free Wi-Fi, and complimentary breakfast.
           </p>
         </div>
@@ -45,17 +59,13 @@ export default function Rooms({ accentColor, hotelName, onOpenBooking }: RoomsPr
             <button
               key={tab}
               onClick={() => setFilter(tab)}
-              className={`text-xs px-3.5 py-1.5 uppercase tracking-wider font-semibold border transition-all ${
+              className={`text-xs px-4 py-2 uppercase tracking-wider font-semibold border transition-all cursor-pointer ${
                 filter === tab
-                  ? "text-white"
-                  : "bg-white text-[#141414] border-[#E4DCCB] hover:border-[#141414]"
+                  ? "bg-[#0F2744] text-white border-[#2B4C7E] shadow-sm"
+                  : "bg-white text-[#111111] border-neutral-300 hover:border-black"
               }`}
-              style={{
-                backgroundColor: filter === tab ? accentColor : undefined,
-                borderColor: filter === tab ? accentColor : undefined,
-              }}
             >
-              {tab === "all" ? "All Rooms" : tab === "suite" ? "Suites & Pavilions" : "Deluxe Rooms"}
+              {tab === "all" ? "All Rooms" : tab === "suite" ? "Suites & Villas" : "Standard & Deluxe"}
             </button>
           ))}
         </div>
@@ -66,10 +76,10 @@ export default function Rooms({ accentColor, hotelName, onOpenBooking }: RoomsPr
         {filteredRooms.map((room) => (
           <div
             key={room.id}
-            className="bg-white border border-[#E4DCCB] shadow-sm hover:shadow-xl transition-[box-shadow,border-color] overflow-hidden grid grid-cols-1 lg:grid-cols-12"
+            className="bg-white border border-neutral-200 shadow-sm hover:shadow-xl transition-[box-shadow,border-color] overflow-hidden grid grid-cols-1 lg:grid-cols-12"
           >
             {/* Room Image (5 Cols) */}
-            <div className="lg:col-span-5 relative min-h-[260px] sm:min-h-[320px] bg-stone-100">
+            <div className="lg:col-span-5 relative min-h-[260px] sm:min-h-[320px] bg-neutral-100">
               <Image
                 src={room.image}
                 alt={room.name}
@@ -77,7 +87,7 @@ export default function Rooms({ accentColor, hotelName, onOpenBooking }: RoomsPr
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 500px"
               />
-              <div className="absolute top-4 left-4 bg-black/75 backdrop-blur-md text-white text-xs px-3 py-1 font-mono">
+              <div className="absolute top-4 left-4 bg-black/80 backdrop-blur-md text-white text-xs px-3 py-1 font-mono">
                 {room.size}
               </div>
             </div>
@@ -86,30 +96,30 @@ export default function Rooms({ accentColor, hotelName, onOpenBooking }: RoomsPr
             <div className="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between">
               <div>
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
-                  <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-[#141414]">
+                  <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-[#111111]">
                     {room.name}
                   </h2>
-                  <span className="text-xs text-green-700 bg-green-50 border border-green-200 px-2.5 py-0.5 font-medium self-start sm:self-auto">
+                  <span className="text-xs text-emerald-800 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 font-medium self-start sm:self-auto">
                     Direct Rate Available
                   </span>
                 </div>
 
-                <p className="text-xs sm:text-sm text-[#2A2A2A]/85 leading-relaxed mb-6 font-normal">
+                <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed mb-6 font-normal">
                   {room.description}
                 </p>
 
                 {/* Specs */}
-                <div className="grid grid-cols-3 gap-4 pb-6 mb-6 border-b border-[#FAF7F2] text-xs text-[#2A2A2A]">
+                <div className="grid grid-cols-3 gap-4 pb-6 mb-6 border-b border-neutral-100 text-xs text-neutral-700">
                   <div className="flex items-center gap-1.5">
-                    <Maximize2 size={15} style={{ color: accentColor }} />
+                    <Maximize2 size={15} className="text-[#111111]" />
                     <span>{room.size}</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <Bed size={15} style={{ color: accentColor }} />
+                    <Bed size={15} className="text-[#111111]" />
                     <span>{room.bedType}</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <Users size={15} style={{ color: accentColor }} />
+                    <Users size={15} className="text-[#111111]" />
                     <span>Up to {room.maxGuests} Guests</span>
                   </div>
                 </div>
@@ -117,8 +127,8 @@ export default function Rooms({ accentColor, hotelName, onOpenBooking }: RoomsPr
                 {/* Amenities List */}
                 <div className="grid grid-cols-2 gap-2 mb-6">
                   {room.amenities.map((a) => (
-                    <div key={a} className="flex items-center gap-2 text-xs text-[#6B645A]">
-                      <Check size={14} style={{ color: accentColor }} className="shrink-0" />
+                    <div key={a} className="flex items-center gap-2 text-xs text-neutral-600">
+                      <Check size={14} className="text-emerald-600 shrink-0" />
                       <span>{a}</span>
                     </div>
                   ))}
@@ -126,18 +136,17 @@ export default function Rooms({ accentColor, hotelName, onOpenBooking }: RoomsPr
               </div>
 
               {/* Price & Reserve CTA */}
-              <div className="pt-6 border-t border-[#E4DCCB] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="pt-6 border-t border-neutral-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
-                  <span className="font-serif text-3xl font-bold text-[#141414]">
+                  <span className="font-serif text-3xl font-bold text-[#111111]">
                     ₹{room.pricePerNight.toLocaleString()}
                   </span>
-                  <span className="text-xs text-[#6B645A] ml-2">/ night (excluding taxes)</span>
+                  <span className="text-xs text-neutral-500 ml-2">/ night (excluding taxes)</span>
                 </div>
 
                 <button
                   onClick={() => onOpenBooking(room.id)}
-                  className="w-full sm:w-auto py-3 px-8 text-xs uppercase tracking-wider font-semibold text-white shadow-md hover:shadow-lg transition-[transform,box-shadow,opacity] flex items-center justify-center gap-2 cursor-pointer"
-                  style={{ backgroundColor: accentColor }}
+                  className="btn-navy w-full sm:w-auto py-3 px-8 text-xs uppercase tracking-wider font-semibold text-white shadow-md hover:shadow-lg transition-[transform,box-shadow,opacity] flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <span>Reserve This Room</span>
                   <ArrowRight size={14} />

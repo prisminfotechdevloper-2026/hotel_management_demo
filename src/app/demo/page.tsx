@@ -33,7 +33,7 @@ export default function DemoPage() {
 
   // Dynamic Brand Accent based on Selected Property Preset
   const activePreset = HOTEL_PRESETS[currentType];
-  const currentAccent = activePreset.defaultAccent || "#B8975A";
+  const currentAccent = "#0F2744";
 
   const handleTypeChange = (type: HotelType) => {
     setCurrentType(type);
@@ -83,6 +83,7 @@ export default function DemoPage() {
           <Rooms
             accentColor={currentAccent}
             hotelName={activePreset.name}
+            hotelType={currentType}
             onOpenBooking={handleOpenBooking}
           />
         </>
@@ -108,6 +109,7 @@ export default function DemoPage() {
         initialCheckIn={bookingDates.checkIn}
         initialCheckOut={bookingDates.checkOut}
         hotelName={activePreset.name}
+        hotelType={currentType}
       />
 
       {/* 5. Agency Book a Demo Lead Modal */}
