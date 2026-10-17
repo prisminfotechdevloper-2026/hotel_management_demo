@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ROOMS_DATA, RoomOption } from "./mockData";
 import { X, ArrowRight } from "lucide-react";
 import {
@@ -14,6 +14,8 @@ interface BookingFlowModalProps {
   onClose: () => void;
   accentColor: string;
   initialRoomId?: string;
+  initialCheckIn?: string;
+  initialCheckOut?: string;
   hotelName: string;
 }
 
@@ -22,19 +24,34 @@ export default function BookingFlowModal({
   onClose,
   accentColor,
   initialRoomId,
+  initialCheckIn,
+  initialCheckOut,
   hotelName,
 }: BookingFlowModalProps) {
   const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
 
   // Step 1: Dates & Guests
-  const [checkIn, setCheckIn] = useState("2026-10-24");
-  const [checkOut, setCheckOut] = useState("2026-10-27");
+  const [checkIn, setCheckIn] = useState(initialCheckIn || "2026-10-24");
+  const [checkOut, setCheckOut] = useState(initialCheckOut || "2026-10-27");
   const [guestsCount, setGuestsCount] = useState(2);
 
   // Step 2: Selected Room (Lazy initializer)
   const [selectedRoom, setSelectedRoom] = useState<RoomOption>(() => {
     return ROOMS_DATA.find((r) => r.id === initialRoomId) || ROOMS_DATA[0];
   });
+
+  useEffect(() => {
+    if (isOpen) {
+      if (initialCheckIn) setCheckIn(initialCheckIn);
+      if (initialCheckOut) setCheckOut(initialCheckOut);
+      if (initialRoomId) {
+        const found = ROOMS_DATA.find((r) => r.id === initialRoomId);
+        if (found) setSelectedRoom(found);
+      }
+      setStep(initialRoomId ? 2 : 1);
+      setErrorMsg(null);
+    }
+  }, [isOpen, initialCheckIn, initialCheckOut, initialRoomId]);
 
   // Step 3: Guest details
   const [guestName, setGuestName] = useState("");
@@ -109,7 +126,7 @@ export default function BookingFlowModal({
               className="text-[11px] uppercase tracking-[0.2em] font-semibold"
               style={{ color: accentColor }}
             >
-              {hotelName} &bull; Direct Reservation Engine
+              {hotelName} • Direct Reservation Engine
             </span>
             <span className="text-xs font-mono text-[#6B645A]">
               Step {step} of 4
@@ -136,7 +153,7 @@ export default function BookingFlowModal({
                 Select Stay Dates & Guests
               </h2>
               <p className="text-xs text-[#6B645A]">
-                Guaranteed direct hotel rate &bull; Instant room reservation confirmation.
+                Guaranteed direct hotel rate • Instant room reservation confirmation.
               </p>
             </div>
 

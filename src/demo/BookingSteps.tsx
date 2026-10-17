@@ -30,7 +30,7 @@ export function BookingStepRooms({
             Choose Your Luxury Accommodation
           </h2>
           <p className="text-xs text-[#6B645A]">
-            {nights} Night(s) &bull; {guestsCount} Guest(s)
+            {nights} Night(s) • {guestsCount} Guest(s)
           </p>
         </div>
 
@@ -69,7 +69,7 @@ export function BookingStepRooms({
                   {room.name}
                 </h3>
                 <p className="text-xs text-[#6B645A]">
-                  {room.size} &bull; {room.bedType} &bull; Up to {room.maxGuests} guests
+                  {room.size} • {room.bedType} • Up to {room.maxGuests} guests
                 </p>
                 <div className="flex flex-wrap gap-1 mt-1.5">
                   {room.amenities.slice(0, 2).map((a) => (
@@ -184,7 +184,7 @@ export function BookingStepGuestDetails({
             {selectedRoom.name}
           </span>
           <span className="text-[#6B645A]">
-            {checkIn} to {checkOut} &bull; {nights} Night(s) &bull; {guestsCount} Guest(s)
+            {checkIn} to {checkOut} • {nights} Night(s) • {guestsCount} Guest(s)
           </span>
         </div>
         <div className="text-right">
@@ -251,7 +251,7 @@ export function BookingStepGuestDetails({
             type="tel"
             required
             aria-label="Mobile Number"
-            placeholder="+91 90791 49299"
+            placeholder="+91 98765 43210"
             value={guestPhone}
             onChange={(e) => setGuestPhone(e.target.value)}
             className="w-full bg-white border border-[#E4DCCB] px-3.5 py-2 text-sm text-[#141414] focus:outline-none"
@@ -366,7 +366,7 @@ export function BookingStepConfirmation({
         className="btn-gold py-3 px-8 text-xs uppercase tracking-widest cursor-pointer"
         style={{ backgroundColor: accentColor, borderColor: accentColor, color: "#FFFFFF" }}
       >
-        Done &bull; Return to Demo
+        Done • Return to Demo
       </button>
     </div>
   );

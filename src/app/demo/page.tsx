@@ -16,20 +16,30 @@ export default function DemoPage() {
   // Booking Flow Modal State
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [selectedRoomId, setSelectedRoomId] = useState<string | undefined>(undefined);
+  const [bookingDates, setBookingDates] = useState<{ checkIn?: string; checkOut?: string }>({});
 
   // Agency Lead Demo Modal State
   const [isBookDemoOpen, setIsBookDemoOpen] = useState(false);
 
-  // Locked Luxury Gold Accent (#B8975A)
-  const luxuryGoldAccent = "#B8975A";
+  // Dynamic Brand Accent based on Selected Property Preset
   const activePreset = HOTEL_PRESETS[currentType];
+  const currentAccent = activePreset.defaultAccent || "#B8975A";
 
   const handleTypeChange = (type: HotelType) => {
     setCurrentType(type);
   };
 
-  const handleOpenBooking = (roomId?: string) => {
-    setSelectedRoomId(roomId);
+  const handleOpenBooking = (options?: { roomId?: string; checkIn?: string; checkOut?: string } | string) => {
+    if (typeof options === "string") {
+      setSelectedRoomId(options);
+    } else if (options) {
+      setSelectedRoomId(options.roomId);
+      if (options.checkIn && options.checkOut) {
+        setBookingDates({ checkIn: options.checkIn, checkOut: options.checkOut });
+      }
+    } else {
+      setSelectedRoomId(undefined);
+    }
     setIsBookingOpen(true);
   };
 
@@ -49,7 +59,7 @@ export default function DemoPage() {
       {activeTab === "home" && (
         <HotelHome
           preset={activePreset}
-          accentColor={luxuryGoldAccent}
+          accentColor={currentAccent}
           onOpenBooking={handleOpenBooking}
           onViewRooms={() => setActiveTab("rooms")}
           switcherSlot={sharedSwitcher}
@@ -61,7 +71,7 @@ export default function DemoPage() {
         <>
           {sharedSwitcher}
           <Rooms
-            accentColor={luxuryGoldAccent}
+            accentColor={currentAccent}
             hotelName={activePreset.name}
             onOpenBooking={handleOpenBooking}
           />
@@ -73,7 +83,7 @@ export default function DemoPage() {
         <>
           {sharedSwitcher}
           <AdminSnapshot
-            accentColor={luxuryGoldAccent}
+            accentColor={currentAccent}
             hotelName={activePreset.name}
           />
         </>
@@ -83,8 +93,10 @@ export default function DemoPage() {
       <BookingFlowModal
         isOpen={isBookingOpen}
         onClose={() => setIsBookingOpen(false)}
-        accentColor={luxuryGoldAccent}
+        accentColor={currentAccent}
         initialRoomId={selectedRoomId}
+        initialCheckIn={bookingDates.checkIn}
+        initialCheckOut={bookingDates.checkOut}
         hotelName={activePreset.name}
       />
 

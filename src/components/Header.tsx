@@ -47,7 +47,7 @@ export default function Header({ onOpenBookDemo }: HeaderProps) {
         {/* Desktop Navigation Links */}
         <nav className="hidden md:flex items-center gap-8">
           {siteConfig.navLinks.map((link) => (
-            <a
+            <Link
               key={link.label}
               href={link.href}
               className={`text-[13px] uppercase tracking-[0.12em] font-medium transition-colors duration-200 ${
@@ -57,7 +57,7 @@ export default function Header({ onOpenBookDemo }: HeaderProps) {
               }`}
             >
               {link.label}
-            </a>
+            </Link>
           ))}
           <Link
             href="/demo"
@@ -104,14 +104,14 @@ export default function Header({ onOpenBookDemo }: HeaderProps) {
         <div className="md:hidden bg-[#141414] border-b border-[#B8975A]/30 px-6 py-6 shadow-2xl">
           <nav className="flex flex-col gap-4">
             {siteConfig.navLinks.map((link) => (
-              <a
+              <Link
                 key={link.label}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
                 className="text-sm uppercase tracking-[0.14em] font-medium text-[#FAF7F2]/90 hover:text-[#B8975A] transition-colors py-1.5 border-b border-[#2A2A2A]"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
             <Link
               href="/demo"

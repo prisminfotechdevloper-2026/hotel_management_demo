@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Hero from "@/components/Hero";
 import CategoryNavbar, { LandingCategory } from "@/components/CategoryNavbar";
 import VideoSection from "@/components/VideoSection";
@@ -16,6 +16,28 @@ import BookDemoModal from "@/components/BookDemoModal";
 export default function Home() {
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState<LandingCategory>("video");
+
+  useEffect(() => {
+    const handleHash = () => {
+      const hash = window.location.hash.replace("#", "");
+      if (hash === "services") setActiveCategory("services");
+      else if (hash === "demo-preview" || hash === "demo") setActiveCategory("demo");
+      else if (hash === "process") setActiveCategory("process");
+      else if (hash === "results") setActiveCategory("results");
+      else if (hash === "overview-video" || hash === "video") setActiveCategory("video");
+
+      if (hash && hash !== "contact") {
+        setTimeout(() => {
+          const el = document.getElementById(hash) || document.getElementById("category-content-anchor");
+          el?.scrollIntoView({ behavior: "smooth" });
+        }, 80);
+      }
+    };
+
+    handleHash();
+    window.addEventListener("hashchange", handleHash);
+    return () => window.removeEventListener("hashchange", handleHash);
+  }, []);
 
   return (
     <main className="min-h-screen bg-[#FAF7F2] text-[#2A2A2A] flex flex-col relative">

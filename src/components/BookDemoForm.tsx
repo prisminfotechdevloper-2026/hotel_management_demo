@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import { submitLead, LeadPayload } from "@/lib/submitLead";
+import { siteConfig } from "@/config/siteConfig";
+import { isValidPhoneNumber, createWhatsAppUrl } from "@/lib/whatsapp";
 import { AlertCircle, ArrowRight } from "lucide-react";
 
 const ROOM_OPTIONS = ["1-15", "16-40", "41-80", "80+"];
@@ -177,7 +179,7 @@ function PropertyColumn({
           type="tel"
           required
           aria-label="Phone / WhatsApp"
-          placeholder="+91 90791 49299 (10 digits)"
+          placeholder={`${siteConfig.contact.phone} (10 digits)`}
           value={phone}
           onChange={(e) => onChange("phone", e.target.value)}
           className="w-full bg-[#FFFFFF] border border-[#E4DCCB] text-xs sm:text-sm text-[#141414] px-3.5 py-2 focus:outline-none focus:border-[#B8975A]"
@@ -322,8 +324,7 @@ export default function BookDemoForm({ idPrefix, onSuccess }: BookDemoFormProps)
       setError("Please provide a valid work email.");
       return;
     }
-    const cleanPhone = formData.phone.replace(/\D/g, "");
-    if (cleanPhone.length < 10) {
+    if (!isValidPhoneNumber(formData.phone)) {
       setError("Please enter a valid 10-digit phone number for India.");
       return;
     }
@@ -347,8 +348,7 @@ export default function BookDemoForm({ idPrefix, onSuccess }: BookDemoFormProps)
       whatsappLines.push(`• Notes: ${formData.message.trim()}`);
     }
 
-    const whatsappText = whatsappLines.join("\n");
-    const demoWhatsappUrl = `https://wa.me/919079149299?text=${encodeURIComponent(whatsappText)}`;
+    const demoWhatsappUrl = createWhatsAppUrl(whatsappLines);
 
     try {
       const payload: LeadPayload = {
@@ -366,19 +366,12 @@ export default function BookDemoForm({ idPrefix, onSuccess }: BookDemoFormProps)
 
       await submitLead(payload);
 
-      if (typeof window !== "undefined") {
-        window.open(demoWhatsappUrl, "_blank", "noopener,noreferrer");
-      }
-
       onSuccess({
         fullName: formData.fullName,
         hotelName: formData.hotelName,
         whatsappUrl: demoWhatsappUrl,
       });
     } catch {
-      if (typeof window !== "undefined") {
-        window.open(demoWhatsappUrl, "_blank", "noopener,noreferrer");
-      }
       onSuccess({
         fullName: formData.fullName,
         hotelName: formData.hotelName,
@@ -453,7 +446,7 @@ export default function BookDemoForm({ idPrefix, onSuccess }: BookDemoFormProps)
 
       <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-[#E4DCCB]">
         <div className="text-[11px] text-[#6B645A]">
-          Direct response within 24 hours &bull; 100% Confidential
+          Direct response within 24 hours • 100% Confidential
         </div>
         <button
           type="submit"

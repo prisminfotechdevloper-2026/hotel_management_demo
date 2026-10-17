@@ -7,18 +7,25 @@ export const siteConfig = {
   trustLine: "Trusted by luxury, heritage, and boutique hotel owners across India",
   
   contact: {
-    email: "contact@prismhotels.agency",
-    phone: "+91 90791 49299",
-    whatsappNumber: "919079149299",
-    city: "Jaipur, Rajasthan, India",
+    email: "contact.prisminfotech@gmail.com",
+    phone: "+91 82392 39249",
+    whatsappNumber: "918239239249",
+    city: "Kota, Rajasthan, India",
+    address: "Jagpura, Ramganj Mandi, Kota, Rajasthan, India - 326519",
     whatsappPrefill: "Hello Prism team, I would like to enquire about getting direct booking software for my hotel.",
+    social: {
+      linkedin: "https://www.linkedin.com/company/prism-infotech-solution/",
+      instagram: "https://www.instagram.com/prisminfotechsolution/",
+      telegram: "https://t.me/Software84747",
+      website: "https://prisminfotechsolution.com",
+    },
   },
 
   navLinks: [
-    { label: "Services", href: "#services" },
-    { label: "Demo", href: "#demo-preview" },
-    { label: "Process", href: "#process" },
-    { label: "Contact", href: "#contact" },
+    { label: "Services", href: "/#services" },
+    { label: "Demo", href: "/#demo-preview" },
+    { label: "Process", href: "/#process" },
+    { label: "Contact", href: "/#contact" },
   ],
 
   video: {

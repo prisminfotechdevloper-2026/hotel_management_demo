@@ -15,7 +15,7 @@ export default function WhatsAppButton() {
         target="_blank"
         rel="noopener noreferrer"
         className="group relative flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] text-white shadow-2xl transition-[transform,background-color] duration-300 hover:scale-110 hover:bg-[#20ba59] focus:outline-none focus:ring-4 focus:ring-[#25D366]/40 cursor-pointer"
-        aria-label="Chat with Prism Hotel Management on WhatsApp (+91 90791 49299)"
+        aria-label={`Chat with Prism Hotel Management on WhatsApp (${siteConfig.contact.phone})`}
       >
         {/* Real Official WhatsApp Icon */}
         <svg
@@ -34,7 +34,7 @@ export default function WhatsAppButton() {
 
         {/* Hover Tooltip */}
         <span className="absolute right-16 px-3 py-1.5 bg-[#141414] text-[#FAF7F2] text-xs font-sans whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none border border-[#B8975A]/40 shadow-xl hidden sm:block">
-          WhatsApp: +91 90791 49299
+          WhatsApp: {siteConfig.contact.phone}
         </span>
       </a>
     </aside>

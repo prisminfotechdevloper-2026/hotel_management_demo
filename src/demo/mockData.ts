@@ -22,7 +22,7 @@ export const HOTEL_PRESETS: Record<HotelType, HotelPreset> = {
     city: "Jaipur, Rajasthan",
     defaultAccent: "#B8975A",
     heroImage: "/images/hero-palace.jpg",
-    badgeText: "Heritage Property &bull; Est. 1782",
+    badgeText: "Heritage Property • Est. 1782",
   },
   boutique: {
     id: "boutique",
@@ -33,7 +33,7 @@ export const HOTEL_PRESETS: Record<HotelType, HotelPreset> = {
     city: "Rishikesh, Uttarakhand",
     defaultAccent: "#2E6F56",
     heroImage: "/images/hero-suite.jpg",
-    badgeText: "Boutique Sanctuary &bull; 16 Private Suites",
+    badgeText: "Boutique Sanctuary • 16 Private Suites",
   },
   resort: {
     id: "resort",
@@ -44,7 +44,7 @@ export const HOTEL_PRESETS: Record<HotelType, HotelPreset> = {
     city: "Goa, India",
     defaultAccent: "#1F4E79",
     heroImage: "/images/hero-palace.jpg",
-    badgeText: "Coastal Resort &bull; Private Beach Access",
+    badgeText: "Coastal Resort • Private Beach Access",
   },
   business: {
     id: "business",
@@ -55,7 +55,7 @@ export const HOTEL_PRESETS: Record<HotelType, HotelPreset> = {
     city: "Mumbai, India",
     defaultAccent: "#8C3826",
     heroImage: "/images/video-poster.jpg",
-    badgeText: "Executive Luxury &bull; Prime Financial Center",
+    badgeText: "Executive Luxury • Prime Financial Center",
   },
 };
 

@@ -80,7 +80,7 @@ export default function DemoPreview() {
               </Link>
 
               <span className="text-xs text-[#6B645A] uppercase tracking-wider font-medium">
-                No sign-up required &bull; 100% interactive
+                No sign-up required • 100% interactive
               </span>
             </div>
           </div>
@@ -98,7 +98,7 @@ export default function DemoPreview() {
                 </div>
                 <div className="bg-[#141414] px-4 py-1 rounded text-[11px] font-mono text-[#FAF7F2]/70 border border-[#2A2A2A] flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-[#B8975A]" />
-                  <span>prismhotels.agency/demo/aurelia</span>
+                  <span>prisminfotechsolution.com/demo/aurelia</span>
                 </div>
                 <div className="flex items-center gap-1 text-[10px] text-[#B8975A] font-semibold uppercase tracking-wider">
                   Live View
@@ -150,7 +150,7 @@ export default function DemoPreview() {
                       <Calendar size={13} className="text-[#B8975A]" />
                       <span className="font-medium">Oct 24 &ndash; Oct 27</span>
                     </div>
-                    <span className="text-[#6B645A] hidden sm:inline">&bull; 2 Guests, 1 Suite</span>
+                    <span className="text-[#6B645A] hidden sm:inline">• 2 Guests, 1 Suite</span>
                   </div>
                   <Link
                     href="/demo"
@@ -168,7 +168,7 @@ export default function DemoPreview() {
                       <span className="text-xs font-serif font-semibold text-[#141414]">₹2,200 / night</span>
                     </div>
                     <span className="text-[9px] text-[#9A7B43] font-medium mt-2 flex items-center gap-1">
-                      Available &bull; Instant Confirmation
+                      Available • Instant Confirmation
                     </span>
                   </div>
 

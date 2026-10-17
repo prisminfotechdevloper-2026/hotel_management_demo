@@ -50,15 +50,20 @@ export default function ThemeSwitcher({
         <div className="flex items-center gap-1.5 overflow-x-auto py-1">
           {types.map((t) => {
             const isSelected = currentType === t;
+            const accent = HOTEL_PRESETS[t].defaultAccent;
             return (
               <button
                 key={t}
                 onClick={() => onChangeType(t)}
                 className={`text-[11px] px-3 py-1 uppercase tracking-wider transition-all cursor-pointer font-medium whitespace-nowrap ${
                   isSelected
-                    ? "bg-[#B8975A] text-[#141414] font-bold shadow-sm"
+                    ? "font-bold shadow-sm"
                     : "bg-[#1C1C1C] text-[#FAF7F2]/70 hover:text-[#FAF7F2] border border-[#2A2A2A]"
                 }`}
+                style={{
+                  backgroundColor: isSelected ? accent : undefined,
+                  color: isSelected ? (t === "heritage" ? "#141414" : "#FFFFFF") : undefined,
+                }}
               >
                 {HOTEL_PRESETS[t].label}
               </button>

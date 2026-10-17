@@ -77,7 +77,7 @@ export default function CTABand({ onOpenBookDemo }: CTABandProps) {
 
         {/* Trust Note */}
         <p className="mt-8 text-xs text-[#FAF7F2]/50 uppercase tracking-widest">
-          Personalized demo &bull; Custom direct booking roadmap &bull; Zero obligation
+          Personalized demo • Custom direct booking roadmap • Zero obligation
         </p>
       </div>
     </section>

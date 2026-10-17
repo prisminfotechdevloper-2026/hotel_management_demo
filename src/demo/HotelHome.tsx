@@ -17,7 +17,7 @@ import {
 interface HotelHomeProps {
   preset: HotelPreset;
   accentColor: string;
-  onOpenBooking: (roomId?: string) => void;
+  onOpenBooking: (options?: { roomId?: string; checkIn?: string; checkOut?: string } | string) => void;
   onViewRooms: () => void;
   switcherSlot?: React.ReactNode;
 }
@@ -139,7 +139,7 @@ export default function HotelHome({
               </div>
 
               <button
-                onClick={() => onOpenBooking()}
+                onClick={() => onOpenBooking({ checkIn: dates.checkIn, checkOut: dates.checkOut })}
                 className="py-3 px-6 text-xs uppercase tracking-wider font-semibold text-white transition-opacity hover:opacity-90 flex items-center justify-center gap-2 cursor-pointer shrink-0"
                 style={{ backgroundColor: accentColor }}
               >
@@ -218,7 +218,7 @@ export default function HotelHome({
                   </div>
 
                   <button
-                    onClick={() => onOpenBooking(room.id)}
+                    onClick={() => onOpenBooking({ roomId: room.id, checkIn: dates.checkIn, checkOut: dates.checkOut })}
                     className="text-xs uppercase font-semibold text-white px-4 py-2 transition-opacity hover:opacity-90"
                     style={{ backgroundColor: accentColor }}
                   >
@@ -295,12 +295,12 @@ export default function HotelHome({
             </h3>
             <p className="text-xs text-[#FAF7F2]/75 flex items-center gap-2">
               <MapPin size={14} style={{ color: accentColor }} />
-              <span>Location: {preset.city} &bull; 25 mins from International Airport</span>
+              <span>Location: {preset.city} • 25 mins from International Airport</span>
             </p>
           </div>
 
           <button
-            onClick={() => onOpenBooking()}
+            onClick={() => onOpenBooking({ checkIn: dates.checkIn, checkOut: dates.checkOut })}
             className="py-3 px-6 text-xs uppercase tracking-wider font-semibold text-white whitespace-nowrap cursor-pointer hover:opacity-90"
             style={{ backgroundColor: accentColor }}
           >
