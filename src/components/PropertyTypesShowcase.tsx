@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Check, ArrowRight, Sparkles, Building2, Palmtree, Trees, Landmark, Home } from "lucide-react";
+import { Check, ArrowRight, Building2, Palmtree, Trees, Landmark, Home } from "lucide-react";
 import { HotelType } from "@/demo/mockData";
 
 interface PropertyCategory {

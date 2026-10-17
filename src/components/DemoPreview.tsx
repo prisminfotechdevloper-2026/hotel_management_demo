@@ -9,7 +9,6 @@ import {
   Calendar,
   LayoutDashboard,
   CheckCircle2,
-  Sparkles,
 } from "lucide-react";
 import { HotelType, HOTEL_PRESETS } from "@/demo/mockData";
 
@@ -155,7 +154,6 @@ export default function DemoPreview() {
                     </span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <Sparkles size={11} className="text-neutral-400" />
                     <span className="text-[10px] uppercase tracking-wider font-semibold text-neutral-300">
                       {activePreset.city}
                     </span>
