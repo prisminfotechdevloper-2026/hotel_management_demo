@@ -75,28 +75,28 @@ export default function VideoSection({ onOpenBookDemo }: VideoSectionProps) {
     <section
       id="overview-video"
       ref={sectionRef}
-      className="pt-6 pb-7 md:pt-8 md:pb-8 bg-[#FAF7F2] text-[#141414] relative border-b border-[#E4DCCB]"
+      className="pt-8 pb-10 md:pt-12 md:pb-14 bg-white text-[#0B111A] relative border-b border-slate-200"
     >
       <div className="max-w-[1200px] mx-auto px-6 md:px-8">
         {/* Header Block Above Player (Clean Light Aesthetic) */}
-        <div className="max-w-2xl mx-auto text-center mb-6 md:mb-8">
+        <div className="max-w-2xl mx-auto text-center mb-8 md:mb-10">
           <div className="inline-flex items-center gap-2 mb-3">
-            <span className="w-6 h-[1px] bg-[#B8975A]" />
-            <span className="eyebrow tracking-[0.2em] text-[#9A7B43]">
+            <span className="w-6 h-[1px] bg-[#0B111A]" />
+            <span className="eyebrow tracking-[0.2em] text-[#0B111A] font-semibold">
               {videoConfig.eyebrow}
             </span>
-            <span className="w-6 h-[1px] bg-[#B8975A]" />
+            <span className="w-6 h-[1px] bg-[#0B111A]" />
           </div>
 
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#141414] font-normal leading-tight tracking-[-0.01em]">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#0B111A] font-normal leading-tight tracking-[-0.01em]">
             {videoConfig.heading}
           </h2>
         </div>
 
-        {/* Video Player Container (Max Width 960px, 16:9 ratio, Luxury Border & Soft Shadow) */}
+        {/* Video Player Container */}
         <div className="max-w-[960px] mx-auto">
-          <div className="relative aspect-video w-full bg-[#141414] border border-[#E4DCCB] shadow-2xl overflow-hidden group">
-            {/* If video hasn't started playing: Show Poster with Gold Play Button */}
+          <div className="relative aspect-video w-full bg-[#0B111A] border border-slate-200 shadow-xl overflow-hidden group rounded-sm">
+            {/* If video hasn't started playing: Show Poster with Navy Play Button */}
             {!isPlaying ? (
               <div className="relative w-full h-full">
                 {/* Poster Image */}
@@ -115,30 +115,30 @@ export default function VideoSection({ onOpenBookDemo }: VideoSectionProps) {
                 {/* Empty State Notice */}
                 {isVideoEmpty ? (
                   <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 bg-black/60 backdrop-blur-xs">
-                    <p className="font-serif text-xl sm:text-2xl text-[#FAF7F2] mb-2">
+                    <p className="font-serif text-xl sm:text-2xl text-white mb-2">
                       Overview video coming soon
                     </p>
-                    <span className="text-xs text-[#B8975A] font-mono tracking-wider">
-                      [EDIT ME: Add video.src in siteConfig.ts]
+                    <span className="text-xs text-white/80 font-mono tracking-wider">
+                      Walkthrough video in preparation
                     </span>
                   </div>
                 ) : (
-                  /* Large Gold Circular Play Button with Duration Label */
+                  /* Large Circular Play Button with Duration Label (Button retains Navy Blue) */
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
                     <button
                       onClick={handleStartPlay}
-                      className="relative flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-[#B8975A] text-[#141414] shadow-2xl transition-[transform,background-color,color] duration-300 hover:scale-110 hover:bg-[#9A7B43] hover:text-[#FFFFFF] focus:outline-none focus:ring-4 focus:ring-[#B8975A]/50 cursor-pointer"
+                      className="relative flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-[#0F2744] hover:bg-[#1E3A8A] text-white shadow-2xl transition-[transform,background-color] duration-300 hover:scale-105 border border-white/20 focus:outline-none focus:ring-4 focus:ring-slate-400/40 cursor-pointer"
                       aria-label="Play overview video"
                     >
                       <Play
                         size={32}
                         className="ml-1 fill-current"
                       />
-                      <span className="absolute -inset-2 rounded-full border border-[#B8975A]/40 animate-ping opacity-40 pointer-events-none" />
+                      <span className="absolute -inset-2 rounded-full border border-white/30 animate-ping opacity-40 pointer-events-none" />
                     </button>
 
                     {/* Duration Badge */}
-                    <div className="mt-4 bg-[#141414]/90 backdrop-blur-md border border-[#B8975A]/40 px-3.5 py-1 text-xs uppercase tracking-widest text-[#FAF7F2] font-medium">
+                    <div className="mt-4 bg-[#0B111A]/90 backdrop-blur-md border border-white/15 px-3.5 py-1 text-xs uppercase tracking-widest text-white font-medium rounded-xs">
                       {videoConfig.duration}
                     </div>
                   </div>
@@ -162,14 +162,14 @@ export default function VideoSection({ onOpenBookDemo }: VideoSectionProps) {
                 <div className="absolute top-4 right-4 flex items-center gap-2 z-20">
                   <button
                     onClick={toggleMute}
-                    className="p-2 bg-black/60 hover:bg-black/90 text-[#FAF7F2] rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[#B8975A]"
+                    className="p-2 bg-black/60 hover:bg-black/90 text-white rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-white"
                     aria-label={isMuted ? "Unmute" : "Mute"}
                   >
                     {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
                   </button>
                   <button
                     onClick={toggleFullscreen}
-                    className="p-2 bg-black/60 hover:bg-black/90 text-[#FAF7F2] rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[#B8975A]"
+                    className="p-2 bg-black/60 hover:bg-black/90 text-white rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-white"
                     aria-label="Fullscreen"
                   >
                     <Maximize size={18} />
@@ -178,22 +178,22 @@ export default function VideoSection({ onOpenBookDemo }: VideoSectionProps) {
 
                 {/* End of Video Overlay: Book a Demo & Replay */}
                 {hasEnded && (
-                  <div className="absolute inset-0 bg-[#141414]/90 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center z-30">
-                    <span className="eyebrow mb-2 text-[#B8975A]">Next Step</span>
-                    <h3 className="font-serif text-2xl sm:text-3xl text-[#FAF7F2] mb-6">
+                  <div className="absolute inset-0 bg-[#0B111A]/95 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center z-30">
+                    <span className="eyebrow mb-2 text-white/90">Next Step</span>
+                    <h3 className="font-serif text-2xl sm:text-3xl text-white mb-6">
                       Ready to start getting direct bookings for your hotel?
                     </h3>
                     <div className="flex flex-col sm:flex-row items-center gap-4">
                       {onOpenBookDemo ? (
                         <button
                           onClick={onOpenBookDemo}
-                          className="btn-gold"
+                          className="btn-navy"
                         >
                           Book a Demo
                           <ArrowRight size={15} className="ml-2" />
                         </button>
                       ) : (
-                        <Link href="/book-demo" className="btn-gold">
+                        <Link href="/book-demo" className="btn-navy">
                           Book a Demo
                           <ArrowRight size={15} className="ml-2" />
                         </Link>
@@ -201,7 +201,7 @@ export default function VideoSection({ onOpenBookDemo }: VideoSectionProps) {
 
                       <button
                         onClick={handleReplay}
-                        className="btn-outline-gold flex items-center gap-2"
+                        className="btn-outline-ink border-white/30 text-white hover:bg-white hover:text-[#0B111A] flex items-center gap-2"
                       >
                         <RotateCcw size={15} />
                         Replay Video
@@ -213,9 +213,9 @@ export default function VideoSection({ onOpenBookDemo }: VideoSectionProps) {
             )}
           </div>
 
-          {/* Text and Book a Demo Button Below Player (Light Styled) */}
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-6 pt-6 border-t border-[#E4DCCB]">
-            <p className="text-sm text-[#6B645A] max-w-lg text-center sm:text-left leading-relaxed">
+          {/* Text and Book a Demo Button Below Player */}
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-6 pt-6 border-t border-slate-200">
+            <p className="text-sm text-slate-600 max-w-lg text-center sm:text-left leading-relaxed">
               {videoConfig.subtext}
             </p>
 
@@ -223,12 +223,12 @@ export default function VideoSection({ onOpenBookDemo }: VideoSectionProps) {
               {onOpenBookDemo ? (
                 <button
                   onClick={onOpenBookDemo}
-                  className="btn-gold text-xs py-3 px-6"
+                  className="btn-navy text-xs py-3 px-6"
                 >
                   Book a Demo
                 </button>
               ) : (
-                <Link href="/book-demo" className="btn-gold text-xs py-3 px-6">
+                <Link href="/book-demo" className="btn-navy text-xs py-3 px-6">
                   Book a Demo
                 </Link>
               )}

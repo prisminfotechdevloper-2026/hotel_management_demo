@@ -32,10 +32,10 @@ export default function Rooms({ accentColor, hotelName, onOpenBooking }: RoomsPr
             {hotelName} Accommodations
           </span>
           <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#141414] font-normal">
-            Rooms & Luxury Suites
+            Rooms &amp; Suites
           </h1>
           <p className="text-sm text-[#6B645A] mt-2">
-            Every room features authentic heritage craftsmanship, modern climate control, and direct guest concierge.
+            Spacious, comfortable rooms with premium bedding, silent air conditioning, free Wi-Fi, and complimentary breakfast.
           </p>
         </div>
 
@@ -55,7 +55,7 @@ export default function Rooms({ accentColor, hotelName, onOpenBooking }: RoomsPr
                 borderColor: filter === tab ? accentColor : undefined,
               }}
             >
-              {tab === "all" ? "All Accommodations" : tab === "suite" ? "Suites & Pavilions" : "Deluxe Rooms"}
+              {tab === "all" ? "All Rooms" : tab === "suite" ? "Suites & Pavilions" : "Deluxe Rooms"}
             </button>
           ))}
         </div>

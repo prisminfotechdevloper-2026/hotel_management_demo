@@ -1,11 +1,12 @@
 :root {
-  /* Luxury Hospitality Colour Tokens */
-  --color-ink: #141414;
-  --color-charcoal: #2A2A2A;
-  --color-gold: #B8975A;
-  --color-gold-deep: #9A7B43;
-  --color-cream: #FAF7F2;
-  --color-line: #E4DCCB;
-  --color-stone: #6B645A;
+  /* Crisp Modern Palette: White, Black & Navy Blue */
+  --color-ink: #0B111A;
+  --color-charcoal: #1E293B;
+  --color-navy: #0F2744;
+  --color-navy-light: #1E3A8A;
+  --color-navy-hover: #172554;
+  --color-slate-border: #E2E8F0;
+  --color-slate-bg: #F8FAFC;
+  --color-slate-subtle: #64748B;
   --color-white: #FFFFFF;
 }

@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { siteConfig } from "@/config/siteConfig";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Globe } from "lucide-react";
 import FooterContactForm from "@/components/FooterContactForm";
 
 export default function Footer() {
@@ -12,28 +12,28 @@ export default function Footer() {
   )}`;
 
   return (
-    <footer id="contact" className="bg-[#141414] text-[#FAF7F2] relative border-t border-[#2A2A2A]">
+    <footer id="contact" className="bg-[#0A0A0A] text-white relative border-t border-[#1C1C1C]">
       {/* Contact Form Section */}
-      <div className="py-10 md:py-14 max-w-[1200px] mx-auto px-6 md:px-8 border-b border-[#2A2A2A]">
+      <div className="py-10 md:py-14 max-w-[1200px] mx-auto px-6 md:px-8 border-b border-[#1C1C1C]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left Column: Contact Details (5 Cols) */}
           <div className="lg:col-span-5">
-            <span className="eyebrow tracking-[0.2em] text-[#B8975A] block mb-3">
+            <span className="eyebrow tracking-[0.2em] text-white/90 font-semibold block mb-3">
               Get In Touch
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl text-[#FAF7F2] font-normal leading-tight mb-4">
+            <h2 className="font-serif text-3xl sm:text-4xl text-white font-normal leading-tight mb-4">
               Talk Directly With Our Hotel Team.
             </h2>
-            <p className="text-sm text-[#FAF7F2]/75 leading-relaxed mb-8">
+            <p className="text-sm text-slate-300 leading-relaxed mb-8">
               Whether you want a new luxury website, direct booking engine, or want to stop paying heavy commissions &mdash; we are here to help. We reply within a few hours.
             </p>
 
             <div className="space-y-5">
               <a
                 href={`mailto:${siteConfig.contact.email}`}
-                className="flex items-center gap-3.5 text-sm text-[#FAF7F2]/80 hover:text-[#B8975A] transition-colors group"
+                className="flex items-center gap-3.5 text-sm text-slate-300 hover:text-white transition-colors group"
               >
-                <div className="w-9 h-9 bg-[#1C1C1C] border border-[#2A2A2A] flex items-center justify-center text-[#B8975A] group-hover:border-[#B8975A]/50 transition-colors">
+                <div className="w-9 h-9 bg-[#141414] border border-[#262626] flex items-center justify-center text-white group-hover:border-white/50 transition-colors">
                   <Mail size={16} />
                 </div>
                 <span>{siteConfig.contact.email}</span>
@@ -41,21 +41,21 @@ export default function Footer() {
 
               <a
                 href={`tel:${siteConfig.contact.phone}`}
-                className="flex items-center gap-3.5 text-sm text-[#FAF7F2]/80 hover:text-[#B8975A] transition-colors group"
+                className="flex items-center gap-3.5 text-sm text-slate-300 hover:text-white transition-colors group"
               >
-                <div className="w-9 h-9 bg-[#1C1C1C] border border-[#2A2A2A] flex items-center justify-center text-[#B8975A] group-hover:border-[#B8975A]/50 transition-colors">
+                <div className="w-9 h-9 bg-[#141414] border border-[#262626] flex items-center justify-center text-white group-hover:border-white/50 transition-colors">
                   <Phone size={16} />
                 </div>
                 <span>{siteConfig.contact.phone}</span>
               </a>
 
-              <div className="flex items-start gap-3.5 text-sm text-[#FAF7F2]/80">
-                <div className="w-9 h-9 bg-[#1C1C1C] border border-[#2A2A2A] flex items-center justify-center text-[#B8975A] shrink-0 mt-0.5">
+              <div className="flex items-start gap-3.5 text-sm text-slate-300">
+                <div className="w-9 h-9 bg-[#141414] border border-[#262626] flex items-center justify-center text-white shrink-0 mt-0.5">
                   <MapPin size={16} />
                 </div>
                 <div>
-                  <span className="block text-[#FAF7F2] font-medium">{siteConfig.contact.city}</span>
-                  <span className="text-xs text-[#FAF7F2]/60">{siteConfig.contact.address}</span>
+                  <span className="block text-white font-medium">{siteConfig.contact.city}</span>
+                  <span className="text-xs text-slate-400">{siteConfig.contact.address}</span>
                 </div>
               </div>
 
@@ -87,20 +87,20 @@ export default function Footer() {
           {/* Brand Wordmark & Short Line */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
             <Link href="/" className="group flex flex-col items-center md:items-start mb-2">
-              <span className="font-serif text-2xl tracking-[0.2em] text-[#FAF7F2] font-semibold leading-tight group-hover:text-[#B8975A] transition-colors">
+              <span className="font-serif text-2xl tracking-[0.2em] text-white font-semibold leading-tight group-hover:text-slate-300 transition-colors">
                 PRISM
               </span>
-              <span className="text-[10px] tracking-[0.26em] uppercase text-[#B8975A] font-medium">
+              <span className="text-[10px] tracking-[0.26em] uppercase text-slate-400 font-medium">
                 Hotel Management
               </span>
             </Link>
-            <p className="text-xs text-[#FAF7F2]/50 max-w-sm">
+            <p className="text-xs text-slate-400 max-w-sm">
               A specialized hospitality technology unit by{" "}
               <a
                 href={siteConfig.contact.social.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline hover:text-[#B8975A] transition-colors"
+                className="underline hover:text-white transition-colors"
               >
                 Prism Infotech Solution LLP
               </a>
@@ -109,13 +109,13 @@ export default function Footer() {
           </div>
 
           {/* Social Icons */}
-          <div className="flex items-center gap-4 text-[#FAF7F2]/60">
+          <div className="flex items-center gap-4 text-slate-400">
             <a
               href={siteConfig.contact.social.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="w-8 h-8 rounded-full bg-[#1C1C1C] border border-[#2A2A2A] flex items-center justify-center hover:text-[#B8975A] hover:border-[#B8975A]/50 transition-colors"
+              className="w-8 h-8 rounded-full bg-[#141414] border border-[#262626] flex items-center justify-center hover:text-white hover:border-slate-500 transition-colors"
             >
               <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
                 <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
@@ -126,7 +126,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="w-8 h-8 rounded-full bg-[#1C1C1C] border border-[#2A2A2A] flex items-center justify-center hover:text-[#B8975A] hover:border-[#B8975A]/50 transition-colors"
+              className="w-8 h-8 rounded-full bg-[#141414] border border-[#262626] flex items-center justify-center hover:text-white hover:border-slate-500 transition-colors"
             >
               <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
@@ -137,14 +137,14 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Website"
-              className="w-8 h-8 rounded-full bg-[#1C1C1C] border border-[#2A2A2A] flex items-center justify-center hover:text-[#B8975A] hover:border-[#B8975A]/50 transition-colors text-xs font-semibold"
+              className="w-8 h-8 rounded-full bg-[#141414] border border-[#262626] flex items-center justify-center hover:text-white hover:border-slate-500 transition-colors text-xs font-semibold"
             >
-              🌐
+              <Globe size={15} />
             </a>
           </div>
 
           {/* Copyright */}
-          <div className="text-xs text-[#FAF7F2]/40 text-center md:text-right font-mono">
+          <div className="text-xs text-slate-500 text-center md:text-right font-mono">
             &copy; 2026 Prism Hotel Management. All rights reserved.
           </div>
         </div>

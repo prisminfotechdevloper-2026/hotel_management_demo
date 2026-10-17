@@ -7,6 +7,14 @@ import { isValidPhoneNumber, createWhatsAppUrl } from "@/lib/whatsapp";
 import { AlertCircle, ArrowRight } from "lucide-react";
 
 const ROOM_OPTIONS = ["1-15", "16-40", "41-80", "80+"];
+const PROPERTY_TYPE_OPTIONS = [
+  "Beach / Nature Resort",
+  "Boutique / Mountain Retreat",
+  "City / Business Hotel",
+  "Heritage Haveli / Palace",
+  "Private Villa / Estate",
+  "Independent Hotel",
+];
 const NEED_OPTIONS = [
   "Direct Booking Engine",
   "Luxury Hotel Website",
@@ -43,9 +51,9 @@ function ContactColumn({
       <div>
         <label
           htmlFor={`${idPrefix}-fullName`}
-          className="block text-[11px] uppercase tracking-wider text-[#141414] font-semibold mb-1"
+          className="block text-[11px] uppercase tracking-wider text-[#0B111A] font-semibold mb-1"
         >
-          Full Name <span className="text-[#B8975A]">*</span>
+          Full Name <span className="text-[#0B111A]">*</span>
         </label>
         <input
           id={`${idPrefix}-fullName`}
@@ -53,19 +61,19 @@ function ContactColumn({
           type="text"
           required
           aria-label="Full Name"
-          placeholder="e.g. Vikramaditya Singh"
+          placeholder="e.g. Rahul Sharma"
           value={fullName}
           onChange={(e) => onChange("fullName", e.target.value)}
-          className="w-full bg-[#FFFFFF] border border-[#E4DCCB] text-xs sm:text-sm text-[#141414] px-3.5 py-2 focus:outline-none focus:border-[#B8975A]"
+          className="w-full bg-white border border-slate-200 text-xs sm:text-sm text-[#0B111A] px-3.5 py-2 focus:outline-none focus:border-[#0B111A]"
         />
       </div>
 
       <div>
         <label
           htmlFor={`${idPrefix}-workEmail`}
-          className="block text-[11px] uppercase tracking-wider text-[#141414] font-semibold mb-1"
+          className="block text-[11px] uppercase tracking-wider text-[#0B111A] font-semibold mb-1"
         >
-          Work Email <span className="text-[#B8975A]">*</span>
+          Work Email <span className="text-[#0B111A]">*</span>
         </label>
         <input
           id={`${idPrefix}-workEmail`}
@@ -73,10 +81,10 @@ function ContactColumn({
           type="email"
           required
           aria-label="Work Email"
-          placeholder="gm@heritagepalace.in"
+          placeholder="gm@yourhotel.com"
           value={workEmail}
           onChange={(e) => onChange("workEmail", e.target.value)}
-          className="w-full bg-[#FFFFFF] border border-[#E4DCCB] text-xs sm:text-sm text-[#141414] px-3.5 py-2 focus:outline-none focus:border-[#B8975A]"
+          className="w-full bg-white border border-slate-200 text-xs sm:text-sm text-[#0B111A] px-3.5 py-2 focus:outline-none focus:border-[#0B111A]"
         />
       </div>
 
@@ -84,26 +92,26 @@ function ContactColumn({
         <div>
           <label
             htmlFor={`${idPrefix}-city`}
-            className="block text-[11px] uppercase tracking-wider text-[#141414] font-semibold mb-1"
+            className="block text-[11px] uppercase tracking-wider text-[#0B111A] font-semibold mb-1"
           >
-            City <span className="text-[#6B645A] font-normal">(Opt)</span>
+            City <span className="text-slate-500 font-normal">(Opt)</span>
           </label>
           <input
             id={`${idPrefix}-city`}
             name="city"
             type="text"
             aria-label="City"
-            placeholder="e.g. Jaipur"
+            placeholder="e.g. Goa, Mumbai, Jaipur"
             value={city}
             onChange={(e) => onChange("city", e.target.value)}
-            className="w-full bg-[#FFFFFF] border border-[#E4DCCB] text-xs sm:text-sm text-[#141414] px-3 py-2 focus:outline-none focus:border-[#B8975A]"
+            className="w-full bg-white border border-slate-200 text-xs sm:text-sm text-[#0B111A] px-3 py-2 focus:outline-none focus:border-[#0B111A]"
           />
         </div>
 
         <div>
           <label
             htmlFor={`${idPrefix}-rooms`}
-            className="block text-[11px] uppercase tracking-wider text-[#141414] font-semibold mb-1"
+            className="block text-[11px] uppercase tracking-wider text-[#0B111A] font-semibold mb-1"
           >
             Rooms Count
           </label>
@@ -113,7 +121,7 @@ function ContactColumn({
             aria-label="Rooms Count"
             value={rooms}
             onChange={(e) => onChange("rooms", e.target.value)}
-            className="w-full bg-[#FFFFFF] border border-[#E4DCCB] text-xs sm:text-sm text-[#141414] px-3 py-2 focus:outline-none focus:border-[#B8975A]"
+            className="w-full bg-white border border-slate-200 text-xs sm:text-sm text-[#0B111A] px-3 py-2 focus:outline-none focus:border-[#0B111A]"
           >
             {ROOM_OPTIONS.map((opt) => (
               <option key={opt} value={opt}>
@@ -130,6 +138,7 @@ function ContactColumn({
 interface PropertyColumnProps {
   idPrefix: string;
   hotelName: string;
+  propertyType: string;
   phone: string;
   preferredDate: string;
   preferredTimeSlot: string;
@@ -139,6 +148,7 @@ interface PropertyColumnProps {
 function PropertyColumn({
   idPrefix,
   hotelName,
+  propertyType,
   phone,
   preferredDate,
   preferredTimeSlot,
@@ -146,32 +156,57 @@ function PropertyColumn({
 }: PropertyColumnProps) {
   return (
     <div className="space-y-3.5">
-      <div>
-        <label
-          htmlFor={`${idPrefix}-hotelName`}
-          className="block text-[11px] uppercase tracking-wider text-[#141414] font-semibold mb-1"
-        >
-          Hotel Name <span className="text-[#B8975A]">*</span>
-        </label>
-        <input
-          id={`${idPrefix}-hotelName`}
-          name="hotelName"
-          type="text"
-          required
-          aria-label="Hotel Name"
-          placeholder="e.g. Amber Vilas Palace Resort"
-          value={hotelName}
-          onChange={(e) => onChange("hotelName", e.target.value)}
-          className="w-full bg-[#FFFFFF] border border-[#E4DCCB] text-xs sm:text-sm text-[#141414] px-3.5 py-2 focus:outline-none focus:border-[#B8975A]"
-        />
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <label
+            htmlFor={`${idPrefix}-hotelName`}
+            className="block text-[11px] uppercase tracking-wider text-[#0B111A] font-semibold mb-1"
+          >
+            Hotel Name <span className="text-[#0B111A]">*</span>
+          </label>
+          <input
+            id={`${idPrefix}-hotelName`}
+            name="hotelName"
+            type="text"
+            required
+            aria-label="Hotel Name"
+            placeholder="e.g. Grand Horizon Hotel"
+            value={hotelName}
+            onChange={(e) => onChange("hotelName", e.target.value)}
+            className="w-full bg-white border border-slate-200 text-xs sm:text-sm text-[#0B111A] px-3.5 py-2 focus:outline-none focus:border-[#0B111A]"
+          />
+        </div>
+
+        <div>
+          <label
+            htmlFor={`${idPrefix}-propertyType`}
+            className="block text-[11px] uppercase tracking-wider text-[#0B111A] font-semibold mb-1"
+          >
+            Property Format
+          </label>
+          <select
+            id={`${idPrefix}-propertyType`}
+            name="propertyType"
+            aria-label="Property Format"
+            value={propertyType}
+            onChange={(e) => onChange("propertyType", e.target.value)}
+            className="w-full bg-white border border-slate-200 text-xs sm:text-sm text-[#0B111A] px-3 py-2 focus:outline-none focus:border-[#0B111A]"
+          >
+            {PROPERTY_TYPE_OPTIONS.map((opt) => (
+              <option key={opt} value={opt}>
+                {opt}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       <div>
         <label
           htmlFor={`${idPrefix}-phone`}
-          className="block text-[11px] uppercase tracking-wider text-[#141414] font-semibold mb-1"
+          className="block text-[11px] uppercase tracking-wider text-[#0B111A] font-semibold mb-1"
         >
-          Phone / WhatsApp <span className="text-[#B8975A]">*</span>
+          Phone / WhatsApp <span className="text-[#0B111A]">*</span>
         </label>
         <input
           id={`${idPrefix}-phone`}
@@ -182,7 +217,7 @@ function PropertyColumn({
           placeholder={`${siteConfig.contact.phone} (10 digits)`}
           value={phone}
           onChange={(e) => onChange("phone", e.target.value)}
-          className="w-full bg-[#FFFFFF] border border-[#E4DCCB] text-xs sm:text-sm text-[#141414] px-3.5 py-2 focus:outline-none focus:border-[#B8975A]"
+          className="w-full bg-white border border-slate-200 text-xs sm:text-sm text-[#0B111A] px-3.5 py-2 focus:outline-none focus:border-[#0B111A]"
         />
       </div>
 
@@ -190,7 +225,7 @@ function PropertyColumn({
         <div>
           <label
             htmlFor={`${idPrefix}-preferredDate`}
-            className="block text-[11px] uppercase tracking-wider text-[#141414] font-semibold mb-1"
+            className="block text-[11px] uppercase tracking-wider text-[#0B111A] font-semibold mb-1"
           >
             Preferred Date
           </label>
@@ -201,14 +236,14 @@ function PropertyColumn({
             aria-label="Preferred Date"
             value={preferredDate}
             onChange={(e) => onChange("preferredDate", e.target.value)}
-            className="w-full bg-[#FFFFFF] border border-[#E4DCCB] text-xs sm:text-sm text-[#141414] px-3 py-1.5 focus:outline-none focus:border-[#B8975A]"
+            className="w-full bg-white border border-slate-200 text-xs sm:text-sm text-[#0B111A] px-3 py-1.5 focus:outline-none focus:border-[#0B111A]"
           />
         </div>
 
         <div>
           <label
             htmlFor={`${idPrefix}-preferredTimeSlot`}
-            className="block text-[11px] uppercase tracking-wider text-[#141414] font-semibold mb-1"
+            className="block text-[11px] uppercase tracking-wider text-[#0B111A] font-semibold mb-1"
           >
             Preferred Slot
           </label>
@@ -218,7 +253,7 @@ function PropertyColumn({
             aria-label="Preferred Slot"
             value={preferredTimeSlot}
             onChange={(e) => onChange("preferredTimeSlot", e.target.value)}
-            className="w-full bg-[#FFFFFF] border border-[#E4DCCB] text-xs sm:text-sm text-[#141414] px-3 py-2 focus:outline-none focus:border-[#B8975A]"
+            className="w-full bg-white border border-slate-200 text-xs sm:text-sm text-[#0B111A] px-3 py-2 focus:outline-none focus:border-[#0B111A]"
           >
             {TIME_SLOTS.map((slot) => (
               <option key={slot} value={slot}>
@@ -240,7 +275,7 @@ interface NeedChipsProps {
 function NeedChips({ needs, onToggle }: NeedChipsProps) {
   return (
     <div className="pt-1">
-      <span className="block text-[11px] uppercase tracking-wider text-[#141414] font-semibold mb-1.5">
+      <span className="block text-[11px] uppercase tracking-wider text-[#0B111A] font-semibold mb-1.5">
         What do you need?
       </span>
       <div className="flex flex-wrap gap-2">
@@ -254,8 +289,8 @@ function NeedChips({ needs, onToggle }: NeedChipsProps) {
               aria-pressed={isSelected}
               className={`text-xs px-3 py-1 transition-[background-color,border-color,color] cursor-pointer ${
                 isSelected
-                  ? "bg-[#B8975A] text-[#141414] font-semibold border border-[#9A7B43]"
-                  : "bg-[#FFFFFF] text-[#2A2A2A] border border-[#E4DCCB] hover:border-[#B8975A]"
+                  ? "bg-[#0B111A] text-white font-semibold border border-[#0B111A]"
+                  : "bg-white text-slate-700 border border-slate-200 hover:border-[#0B111A] hover:text-[#0B111A]"
               }`}
             >
               {option}
@@ -280,6 +315,7 @@ export default function BookDemoForm({ idPrefix, onSuccess }: BookDemoFormProps)
   const [formData, setFormData] = useState({
     fullName: "",
     hotelName: "",
+    propertyType: "Beach / Nature Resort",
     workEmail: "",
     phone: "",
     city: "",
@@ -337,6 +373,7 @@ export default function BookDemoForm({ idPrefix, onSuccess }: BookDemoFormProps)
       "I have requested a Personalized Demo for my property:",
       `• Name: ${formData.fullName.trim()}`,
       `• Hotel: ${formData.hotelName.trim()}`,
+      `• Property Format: ${formData.propertyType}`,
       `• Phone: ${formData.phone.trim()}`,
       `• Email: ${formData.workEmail.trim()}`,
       `• Rooms: ${formData.rooms || "N/A"}`,
@@ -353,7 +390,7 @@ export default function BookDemoForm({ idPrefix, onSuccess }: BookDemoFormProps)
     try {
       const payload: LeadPayload = {
         fullName: formData.fullName,
-        hotelName: formData.hotelName,
+        hotelName: `${formData.hotelName} (${formData.propertyType})`,
         workEmail: formData.workEmail,
         phone: formData.phone,
         city: formData.city,
@@ -415,6 +452,7 @@ export default function BookDemoForm({ idPrefix, onSuccess }: BookDemoFormProps)
         <PropertyColumn
           idPrefix={idPrefix}
           hotelName={formData.hotelName}
+          propertyType={formData.propertyType}
           phone={formData.phone}
           preferredDate={formData.preferredDate}
           preferredTimeSlot={formData.preferredTimeSlot}
@@ -428,9 +466,9 @@ export default function BookDemoForm({ idPrefix, onSuccess }: BookDemoFormProps)
       <div>
         <label
           htmlFor={`${idPrefix}-message`}
-          className="block text-[11px] uppercase tracking-wider text-[#141414] font-semibold mb-1"
+          className="block text-[11px] uppercase tracking-wider text-[#0B111A] font-semibold mb-1"
         >
-          Specific Requirements <span className="text-[#6B645A] font-normal">(Optional)</span>
+          Specific Requirements <span className="text-slate-500 font-normal">(Optional)</span>
         </label>
         <textarea
           id={`${idPrefix}-message`}
@@ -440,18 +478,18 @@ export default function BookDemoForm({ idPrefix, onSuccess }: BookDemoFormProps)
           placeholder="e.g. Current occupancy rates, direct booking goals, target launch timeline..."
           value={formData.message}
           onChange={(e) => handleFieldChange("message", e.target.value)}
-          className="w-full bg-[#FFFFFF] border border-[#E4DCCB] text-xs sm:text-sm text-[#141414] px-3 py-2 focus:outline-none focus:border-[#B8975A] resize-none"
+          className="w-full bg-white border border-slate-200 text-xs sm:text-sm text-[#0B111A] px-3 py-2 focus:outline-none focus:border-[#0B111A] resize-none"
         />
       </div>
 
-      <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-[#E4DCCB]">
-        <div className="text-[11px] text-[#6B645A]">
+      <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-slate-200">
+        <div className="text-[11px] text-slate-500">
           Direct response within 24 hours • 100% Confidential
         </div>
         <button
           type="submit"
           disabled={isSubmitting}
-          className="btn-gold w-full sm:w-auto flex items-center justify-center gap-2 text-xs py-3 px-7 cursor-pointer disabled:opacity-50"
+          className="btn-navy w-full sm:w-auto flex items-center justify-center gap-2 text-xs py-3 px-7 cursor-pointer disabled:opacity-50"
         >
           {isSubmitting ? (
             <span>Confirming...</span>

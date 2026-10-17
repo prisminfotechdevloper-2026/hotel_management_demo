@@ -9,6 +9,7 @@ import DemoPreview from "@/components/DemoPreview";
 import Steps from "@/components/Steps";
 import Proof from "@/components/Proof";
 import Testimonials from "@/components/Testimonials";
+import PropertyTypesShowcase from "@/components/PropertyTypesShowcase";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import BookDemoModal from "@/components/BookDemoModal";
@@ -18,6 +19,8 @@ export default function Home() {
   const [activeCategory, setActiveCategory] = useState<LandingCategory>("video");
 
   useEffect(() => {
+    let timerId: ReturnType<typeof setTimeout> | undefined;
+
     const handleHash = () => {
       const hash = window.location.hash.replace("#", "");
       if (hash === "services") setActiveCategory("services");
@@ -27,7 +30,7 @@ export default function Home() {
       else if (hash === "overview-video" || hash === "video") setActiveCategory("video");
 
       if (hash && hash !== "contact") {
-        setTimeout(() => {
+        timerId = setTimeout(() => {
           const el = document.getElementById(hash) || document.getElementById("category-content-anchor");
           el?.scrollIntoView({ behavior: "smooth" });
         }, 80);
@@ -36,11 +39,14 @@ export default function Home() {
 
     handleHash();
     window.addEventListener("hashchange", handleHash);
-    return () => window.removeEventListener("hashchange", handleHash);
+    return () => {
+      window.removeEventListener("hashchange", handleHash);
+      if (timerId) clearTimeout(timerId);
+    };
   }, []);
 
   return (
-    <main className="min-h-screen bg-[#FAF7F2] text-[#2A2A2A] flex flex-col relative">
+    <main className="min-h-screen bg-white text-[#0B111A] flex flex-col relative">
       {/* 1. Hero Section (Integrated Brand Bar, No Duplicate Sticky Header) */}
       <Hero
         onOpenBookDemo={() => setIsDemoModalOpen(true)}
@@ -60,7 +66,12 @@ export default function Home() {
           <VideoSection onOpenBookDemo={() => setIsDemoModalOpen(true)} />
         )}
 
-        {activeCategory === "services" && <ServiceCards />}
+        {activeCategory === "services" && (
+          <>
+            <ServiceCards />
+            <PropertyTypesShowcase />
+          </>
+        )}
 
         {activeCategory === "demo" && <DemoPreview />}
 

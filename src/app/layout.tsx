@@ -19,7 +19,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Prism Hotel Management | Digital Growth Agency for Hotels",
   description:
-    "We build the software that fills your rooms. Tailored direct booking engines, high-converting hotel websites, and management platforms for luxury, heritage, and boutique hotels.",
+    "We build the software that fills your rooms. Tailored direct booking engines, high-converting hotel websites, and management platforms for luxury resorts, boutique stays, city business hotels, and heritage properties across India.",
   openGraph: {
     title: "Prism Hotel Management | Digital Growth Agency for Hotels",
     description:
@@ -41,7 +41,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${cormorant.variable} ${inter.variable} scroll-smooth`}>
-      <body className="min-h-screen bg-[#FAF7F2] text-[#2A2A2A] font-sans antialiased selection:bg-[#B8975A] selection:text-[#141414]">
+      <body className="min-h-screen bg-white text-[#0B111A] font-sans antialiased selection:bg-[#0F2744] selection:text-white">
         {children}
       </body>
     </html>

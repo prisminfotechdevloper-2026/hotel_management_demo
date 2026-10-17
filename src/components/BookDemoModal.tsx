@@ -44,13 +44,13 @@ export default function BookDemoModal({ isOpen, onClose }: BookDemoModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-[#141414]/85 backdrop-blur-sm p-4 sm:p-6 md:p-8 flex items-center justify-center">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-[#0B111A]/85 backdrop-blur-sm p-4 sm:p-6 md:p-8 flex items-center justify-center">
       {/* Modal Dialog with generous width (max-w-4xl) and compact height */}
-      <div className="relative w-full max-w-4xl bg-[#FAF7F2] border border-[#B8975A]/60 shadow-2xl p-6 sm:p-8 md:p-9 text-[#141414] my-auto">
+      <div className="relative w-full max-w-4xl bg-white border border-slate-200 shadow-2xl p-6 sm:p-8 md:p-9 text-[#0B111A] my-auto">
         {/* Close Button */}
         <button
           onClick={handleModalClose}
-          className="absolute top-4 right-4 p-2 text-[#141414]/60 hover:text-[#141414] hover:bg-[#E4DCCB]/40 transition-colors z-20"
+          className="absolute top-4 right-4 p-2 text-slate-400 hover:text-[#0B111A] hover:bg-slate-100 transition-colors z-20"
           aria-label="Close modal"
         >
           <X size={22} />
@@ -62,7 +62,7 @@ export default function BookDemoModal({ isOpen, onClose }: BookDemoModalProps) {
             <div className="w-16 h-16 bg-[#25D366]/20 border border-[#25D366] rounded-full flex items-center justify-center text-[#25D366] mx-auto mb-4">
               <CheckCircle2 size={36} />
             </div>
-            <span className="eyebrow block mb-1 text-[#9A7B43]">Demo Requested</span>
+            <span className="eyebrow block mb-1 text-[#0B111A]">Demo Requested</span>
             <h3 className="font-serif text-3xl sm:text-4xl text-[#141414] font-medium mb-3">
               Thank you, {successData.fullName.split(" ")[0] || "Partner"}
             </h3>
@@ -81,7 +81,7 @@ export default function BookDemoModal({ isOpen, onClose }: BookDemoModalProps) {
                 </svg>
                 <span>Chat on WhatsApp ({siteConfig.contact.phone})</span>
               </a>
-              <button onClick={handleModalClose} className="btn-outline-ink w-full sm:w-auto">
+              <button onClick={handleModalClose} className="btn-outline-navy w-full sm:w-auto">
                 Back to Site
               </button>
             </div>
@@ -90,16 +90,16 @@ export default function BookDemoModal({ isOpen, onClose }: BookDemoModalProps) {
           /* Form Content with Wide Two-Column Layout */
           <>
             {/* Header: Left-Aligned & Compact */}
-            <div className="mb-5 pb-3 border-b border-[#E4DCCB] pr-8 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+            <div className="mb-5 pb-3 border-b border-slate-200 pr-8 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
               <div>
-                <span className="eyebrow block text-[#9A7B43] text-[11px] mb-1">
+                <span className="eyebrow block text-[#0B111A] text-[11px] mb-1 font-semibold">
                   Private Consultation
                 </span>
-                <h2 className="font-serif text-2xl sm:text-3xl md:text-[32px] text-[#141414] font-medium leading-tight">
+                <h2 className="font-serif text-2xl sm:text-3xl md:text-[32px] text-[#0B111A] font-medium leading-tight">
                   Book a Personalized Demo
                 </h2>
               </div>
-              <p className="text-xs text-[#6B645A] max-w-xs text-left sm:text-right">
+              <p className="text-xs text-slate-500 max-w-xs text-left sm:text-right">
                 Discover how Prism eliminates OTA fees and scales direct guest revenue.
               </p>
             </div>

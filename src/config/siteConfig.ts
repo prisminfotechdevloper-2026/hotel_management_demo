@@ -3,8 +3,8 @@ export const siteConfig = {
   tagline: "Digital growth agency for hotels",
   headline: "We build websites and booking software that fill your hotel rooms.",
   subheadline:
-    "Get more direct bookings and stop paying high 18-25% commissions to booking apps. We build your luxury hotel website and online booking system in 14 days.",
-  trustLine: "Trusted by luxury, heritage, and boutique hotel owners across India",
+    "Get more direct bookings and stop paying high 18-25% commissions to booking apps. From boutique retreats and luxury beach resorts to city business hotels and heritage havelis, we build your custom hotel website and online booking system in 14 days.",
+  trustLine: "Trusted by independent hotels, luxury resorts, boutique stays, business hotels & heritage properties across India",
   
   contact: {
     email: "contact.prisminfotech@gmail.com",
@@ -49,24 +49,27 @@ export const siteConfig = {
   testimonials: [
     {
       quote:
-        "Switching to Prism saved our heritage resort lakhs in booking app commissions in our very first season. Guests love booking directly with us.",
-      author: "Rajeshwar Singh Rathore",
+        "Switching to Prism saved our coastal resort over ₹8.5 Lakhs in OTA commissions in our very first season. Guests love booking their sea-facing villas and beach dining packages directly with us.",
+      author: "Rajeshwar Shenoy",
       role: "Managing Director",
-      hotel: "Heritage Haveli Resorts, Rajasthan",
+      hotel: "Bayview Palms Luxury Beach Resort, South Goa",
+      category: "Beach & Leisure Resort",
     },
     {
       quote:
-        "Our website loads super fast on phones and looks truly 5-star. Guests compliment our booking experience before they even arrive.",
-      author: "Ananya Sen",
+        "For our business hotel, automated GST invoice generation and express 2-tap corporate re-booking were game-changers. Our direct booking share jumped from 22% to 64% in 90 days.",
+      author: "Rohan K. Varma",
       role: "General Manager",
-      hotel: "The Terraces Boutique Retreat",
+      hotel: "The Grand Horizon Executive Suites, Bengaluru",
+      category: "Corporate Business Hotel",
     },
     {
       quote:
-        "Our direct bookings increased significantly within two months of launch. The software is very simple for our front-desk team to use every day.",
-      author: "Vikramaditya Oberoi",
-      role: "Director of Operations",
-      hotel: "Palace Vista Luxury Resort, Udaipur",
+        "Our website loads super fast on phones and reflects our boutique aesthetic perfectly. Guests praise how effortless it is to browse our mountain chalets and reserve via UPI.",
+      author: "Ananya Sen",
+      role: "Founder & General Manager",
+      hotel: "The Terraces Forest Retreat & Spa, Rishikesh",
+      category: "Boutique Mountain Stay",
     },
   ],
 

@@ -17,29 +17,29 @@ export default function BookDemoPage() {
   } | null>(null);
 
   return (
-    <main className="min-h-screen bg-[#FAF7F2] text-[#2A2A2A] flex flex-col">
+    <main className="min-h-screen bg-[#F8FAFC] text-[#0B111A] flex flex-col">
       <Header />
 
       <div className="pt-32 pb-24 max-w-[900px] mx-auto px-6 w-full flex-1">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-xs uppercase tracking-wider text-[#6B645A] hover:text-[#B8975A] transition-colors mb-8"
+          className="inline-flex items-center gap-2 text-xs uppercase tracking-wider text-slate-500 hover:text-[#0B111A] transition-colors mb-8"
         >
           <ArrowLeft size={14} />
           <span>Back to Home</span>
         </Link>
 
-        <div className="bg-[#FFFFFF] border border-[#E4DCCB] p-8 md:p-12 shadow-xl">
+        <div className="bg-white border border-slate-200 p-8 md:p-12 shadow-sm">
           {successData ? (
             <div className="text-center py-12 px-4">
               <div className="w-16 h-16 bg-[#25D366]/20 border border-[#25D366] rounded-full flex items-center justify-center text-[#25D366] mx-auto mb-5">
                 <CheckCircle2 size={36} />
               </div>
-              <span className="eyebrow block mb-2 text-[#9A7B43]">Walkthrough Scheduled</span>
-              <h1 className="font-serif text-3xl sm:text-4xl text-[#141414] font-medium mb-3">
+              <span className="eyebrow block mb-2 text-[#0B111A] font-semibold">Walkthrough Scheduled</span>
+              <h1 className="font-serif text-3xl sm:text-4xl text-[#0B111A] font-medium mb-3">
                 Thank you, {successData.fullName}
               </h1>
-              <p className="text-base text-[#6B645A] max-w-md mx-auto mb-6 leading-relaxed">
+              <p className="text-base text-slate-600 max-w-md mx-auto mb-6 leading-relaxed">
                 Your details have been saved. Tap below to chat directly with our hotel growth specialist on WhatsApp, or our team will reach you within <strong>24 hours</strong>.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -61,12 +61,12 @@ export default function BookDemoPage() {
             </div>
           ) : (
             <>
-              <div className="mb-8 pb-6 border-b border-[#E4DCCB] text-center sm:text-left">
-                <span className="eyebrow block mb-2 text-[#9A7B43]">Book Walkthrough</span>
-                <h1 className="font-serif text-3xl sm:text-4xl text-[#141414] font-medium mb-3">
+              <div className="mb-8 pb-6 border-b border-slate-200 text-center sm:text-left">
+                <span className="eyebrow block mb-2 text-[#0B111A] font-semibold">Book Walkthrough</span>
+                <h1 className="font-serif text-3xl sm:text-4xl text-[#0B111A] font-medium mb-3">
                   Schedule Your Free Demo &amp; Growth Audit
                 </h1>
-                <p className="text-sm text-[#6B645A] max-w-xl">
+                <p className="text-sm text-slate-600 max-w-xl">
                   Tell us about your property. We will prepare a live sample booking engine and direct revenue strategy tailored to your hotel.
                 </p>
               </div>

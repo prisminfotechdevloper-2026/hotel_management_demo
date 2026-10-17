@@ -33,7 +33,7 @@ export default function WhatsAppButton() {
         <span className="absolute -inset-1 rounded-full border border-[#25D366]/50 animate-ping opacity-30 pointer-events-none" />
 
         {/* Hover Tooltip */}
-        <span className="absolute right-16 px-3 py-1.5 bg-[#141414] text-[#FAF7F2] text-xs font-sans whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none border border-[#B8975A]/40 shadow-xl hidden sm:block">
+        <span className="absolute right-16 px-3 py-1.5 bg-[#0B111A] text-white text-xs font-sans whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none border border-slate-700 shadow-xl hidden sm:block">
           WhatsApp: {siteConfig.contact.phone}
         </span>
       </a>

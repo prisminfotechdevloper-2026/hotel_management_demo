@@ -48,27 +48,27 @@ export default function CategoryNavbar({
     <aside
       id="category-navbar"
       aria-label="Navigation and Categories"
-      className="sticky top-0 z-50 bg-[#141414]/98 backdrop-blur-md border-y border-[#B8975A]/40 text-[#FAF7F2] shadow-xl"
+      className="sticky top-0 z-50 bg-[#0B111A]/95 backdrop-blur-md border-y border-white/10 text-white shadow-xl"
     >
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6 py-2 md:py-2.5 flex flex-col md:flex-row md:items-center md:justify-between gap-2.5 md:gap-4">
         {/* Line 1 on Mobile: Brand Wordmark (Left) + Book Demo Button (Right) */}
         <div className="flex items-center justify-between w-full md:w-auto shrink-0 pb-1.5 md:pb-0 border-b border-white/10 md:border-b-0">
           <Link href="/" className="flex flex-col text-left group">
-            <span className="font-serif text-lg tracking-[0.2em] text-[#FAF7F2] font-semibold uppercase leading-none group-hover:text-[#B8975A] transition-colors">
+            <span className="font-serif text-lg tracking-[0.2em] text-white font-semibold uppercase leading-none group-hover:text-slate-200 transition-colors">
               PRISM
             </span>
-            <span className="text-[8px] uppercase tracking-[0.24em] text-[#B8975A] font-medium leading-tight">
+            <span className="text-[8px] uppercase tracking-[0.24em] text-slate-400 font-medium leading-tight">
               Hotel Management
             </span>
           </Link>
 
-          {/* Mobile-only CTA button in Line 1 */}
+          {/* Mobile-only CTA button in Line 1 (Keep Navy Blue for Action Button) */}
           <div className="md:hidden">
             <button
               onClick={onOpenBookDemo}
-              className="bg-[#B8975A] hover:bg-[#A38347] text-[#141414] px-3.5 py-1 text-[11px] uppercase tracking-wider font-semibold transition-colors flex items-center gap-1 cursor-pointer shadow-sm active:scale-95"
+              className="btn-navy px-3.5 py-1 text-[11px] flex items-center gap-1 cursor-pointer"
             >
-              <span>Book a Demo</span>
+              <span>Book Demo</span>
               <ArrowRight size={12} />
             </button>
           </div>
@@ -84,15 +84,15 @@ export default function CategoryNavbar({
               <button
                 key={cat.id}
                 onClick={() => handleTabClick(cat.id)}
-                className={`text-xs px-3 sm:px-3.5 py-1.5 uppercase tracking-wider transition-colors cursor-pointer font-medium whitespace-nowrap flex items-center gap-1.5 shrink-0 active:scale-95 ${
+                className={`text-xs px-3 sm:px-3.5 py-1.5 uppercase tracking-wider transition-colors cursor-pointer font-medium whitespace-nowrap flex items-center gap-1.5 shrink-0 rounded-xs ${
                   isSelected
-                    ? "bg-[#B8975A] text-[#141414] font-bold shadow-sm"
-                    : "bg-[#1C1C1C] text-[#FAF7F2]/75 hover:text-[#FAF7F2] hover:bg-[#282828] border border-[#2E2E2E]"
+                    ? "bg-white text-[#0B111A] font-semibold border border-white shadow-sm"
+                    : "bg-white/10 text-slate-300 hover:text-white hover:bg-white/20 border border-white/10"
                 }`}
               >
                 <IconComponent
                   size={12}
-                  className={isSelected ? "text-[#141414]" : "text-[#B8975A]"}
+                  className={isSelected ? "text-[#0B111A]" : "text-slate-400"}
                 />
                 <span>{cat.label}</span>
               </button>
@@ -100,11 +100,11 @@ export default function CategoryNavbar({
           })}
         </nav>
 
-        {/* Desktop-only Action Button on Right */}
+        {/* Desktop-only Action Button on Right (Keep Navy Blue for Action Button) */}
         <div className="hidden md:flex items-center gap-2 shrink-0">
           <button
             onClick={onOpenBookDemo}
-            className="bg-[#B8975A] hover:bg-[#A38347] text-[#141414] px-4 py-1.5 text-xs uppercase tracking-wider font-semibold transition-colors flex items-center gap-1.5 cursor-pointer shadow-sm hover:shadow-md"
+            className="btn-navy px-4 py-1.5 text-xs flex items-center gap-1.5 cursor-pointer shadow-sm hover:shadow-md"
           >
             <span>Book a Demo</span>
             <ArrowRight size={13} />

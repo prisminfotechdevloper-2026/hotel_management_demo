@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ThemeSwitcher from "@/demo/ThemeSwitcher";
 import HotelHome from "@/demo/HotelHome";
 import Rooms from "@/demo/Rooms";
@@ -10,8 +10,18 @@ import BookDemoModal from "@/components/BookDemoModal";
 import { HotelType, HOTEL_PRESETS } from "@/demo/mockData";
 
 export default function DemoPage() {
-  const [currentType, setCurrentType] = useState<HotelType>("heritage");
+  const [currentType, setCurrentType] = useState<HotelType>("resort");
   const [activeTab, setActiveTab] = useState<"home" | "rooms" | "admin">("home");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const typeParam = params.get("type") as HotelType;
+      if (typeParam && HOTEL_PRESETS[typeParam]) {
+        setCurrentType(typeParam);
+      }
+    }
+  }, []);
 
   // Booking Flow Modal State
   const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -54,7 +64,7 @@ export default function DemoPage() {
   );
 
   return (
-    <main className="min-h-screen bg-[#FAF7F2] text-[#2A2A2A] relative">
+    <main className="min-h-screen bg-white text-[#0B111A] relative">
       {/* 1. When on Hotel Home: Hero comes first at top, Switcher Bar sits directly after Hero */}
       {activeTab === "home" && (
         <HotelHome
